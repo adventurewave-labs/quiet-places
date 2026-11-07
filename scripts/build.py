@@ -198,11 +198,14 @@ def jsonld_str(data):
 
 
 def clip(text, limit=155):
-    """Trim to the last whole word within limit so meta descriptions never
-    cut mid-word."""
+    """Trim to a whole word within limit so meta descriptions never cut
+    mid-word; a cut landing exactly on a word end keeps that word."""
     if len(text) <= limit:
         return text
-    return text[:limit].rsplit(" ", 1)[0]
+    cut = text[:limit].rstrip()
+    if text[limit] != " " and " " in cut:
+        cut = cut.rsplit(" ", 1)[0]
+    return cut
 
 
 def layout(lang, title, desc, canonical, hreflang_for, body_jsonld, content, updated, lang_switch):
