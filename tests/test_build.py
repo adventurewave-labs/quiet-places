@@ -197,15 +197,23 @@ class PageQuality(BuildHarness):
 
         slim = copy.deepcopy(self.data)
         removed = slim["places"].pop()
+        # removing a place also removes its relocation guide (enforced by build)
+        reloc = json.loads((ROOT / "data" / "relocation.json").read_text(encoding="utf-8"))
+        reloc["towns"] = [t for t in reloc["towns"] if t["place_slug"] != removed["slug"]]
         with tempfile.TemporaryDirectory() as td:
             slim_file = Path(td) / "slim.json"
             slim_file.write_text(json.dumps(slim), encoding="utf-8")
+            reloc_file = Path(td) / "relocation.json"
+            reloc_file.write_text(json.dumps(reloc), encoding="utf-8")
             original = build.DATA_FILE
+            original_reloc = guides.RELOCATION_FILE
             build.DATA_FILE = slim_file
+            guides.RELOCATION_FILE = reloc_file
             try:
                 build.build_into(self.out)  # rebuild over the full output
             finally:
                 build.DATA_FILE = original
+                guides.RELOCATION_FILE = original_reloc
             self.assertFalse(
                 (self.out / "places" / f"{removed['slug']}.html").exists(),
                 "removed entry still in output",
@@ -383,7 +391,7 @@ class Guides(BuildHarness):
         import tempfile
 
         raw = json.loads((ROOT / "data" / "relocation.json").read_text(encoding="utf-8"))
-        for bad_slug in ("index",)
+        for bad_slug in ("index",):
             hostile = copy.deepcopy(raw)
             hostile["towns"][0]["slug"] = bad_slug
             with tempfile.TemporaryDirectory() as td:
