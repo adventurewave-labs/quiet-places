@@ -19,7 +19,7 @@ jobs:
         run: python3 -m unittest discover -s tests -v
       - name: Committed site/ matches regeneration
         run: |
-          git diff --exit-code site/ || {
-            echo "::error::site/ is stale: data or build changed without rebuilding. Run python3 scripts/build.py and commit."
+          git status --porcelain site/ | grep . && {
+            echo "::error::site/ is stale or incomplete: run python3 scripts/build.py and commit the result."
             exit 1
-          }
+          } || true
