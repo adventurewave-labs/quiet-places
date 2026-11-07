@@ -12,6 +12,7 @@ import ssl
 import subprocess
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
@@ -24,6 +25,19 @@ def fetch(url, method="HEAD", context=None):
     req = urllib.request.Request(url, method=method, headers={"User-Agent": UA})
     with urllib.request.urlopen(req, timeout=TIMEOUT, context=context) as resp:
         return resp.status, resp.geturl()
+
+
+def classify(origin: str, final: str) -> str:
+    """Classify where a redirect landed: PASS if same site, FAIL otherwise.
+
+    Same site means same host ignoring the www. prefix. Anything else is a
+    cross-host redirect, which could be a parked domain or a different site,
+    and does not verify the entry.
+    """
+    host = lambda u: urllib.parse.urlparse(u).netloc.lower().removeprefix("www.")  # noqa: E731
+    if host(origin) == host(final) and host(origin):
+        return "PASS"
+    return "FAIL"
 
 
 def check(url):
@@ -70,8 +84,10 @@ def main():
     for p in places:
         status, info = check(p["url"])
         if status == 200:
-            result = "PASS" if info == p["url"] else "REDIR"
-            detail = f"-> {info}" if result == "REDIR" else ""
+            result = classify(p["url"], info)
+            if result == "FAIL":
+                failures += 1
+            detail = f"-> {info}" if info != p["url"] else ""
         elif status:
             result, failures = f"HTTP {status}", failures + 1
             detail = ""
@@ -79,7 +95,7 @@ def main():
             result, failures = "FAIL", failures + 1
             detail = str(info)[:120]
         print(f"{result:8} {p['slug']:24} {p['url']}  {detail}")
-    print(f"\n{len(places) - failures}/{len(places)} reachable, {failures} failures")
+    print(f"\n{len(places) - failures}/{len(places)} reachable on their own site, {failures} failures")
     sys.exit(1 if failures else 0)
 
 

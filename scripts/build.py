@@ -143,6 +143,12 @@ def page_url(slug, lang, kind="place"):
     raise ValueError(kind)
 
 
+def page_path(slug, lang, kind="place"):
+    """Root-relative form of page_url, for links that must stay inside
+    whatever host renders the page (preview deploys, custom domains)."""
+    return page_url(slug, lang, kind).removeprefix(BASE_URL)
+
+
 def lang_attrs(langs, es=False):
     names = LANG_NAMES_ES if es else LANG_NAMES
     return ", ".join(names[l] for l in langs)
@@ -300,7 +306,7 @@ def home_page(places, lang, updated):
         title,
         (HERO_ES if es else HERO_EN)[:155],
         page_url(None, lang, "home"),
-        {"en": page_url(None, "en", "home"), "es": page_url(None, "es", "home")},
+        {"en": page_path(None, "en", "home"), "es": page_path(None, "es", "home")},
         website_jsonld,
         content,
         updated,
@@ -341,7 +347,7 @@ def place_page(p, lang, updated):
         title,
         (p["tagline_es"] if es else p["tagline_en"]),
         page_url(p["slug"], lang),
-        {"en": page_url(p["slug"], "en"), "es": page_url(p["slug"], "es")},
+        {"en": page_path(p["slug"], "en"), "es": page_path(p["slug"], "es")},
         place_jsonld(p, lang),
         content,
         updated,
@@ -419,7 +425,7 @@ def match_page(lang, updated):
         title,
         (desc_es if es else desc_en),
         page_url(None, lang, "match"),
-        {"en": page_url(None, "en", "match"), "es": page_url(None, "es", "match")},
+        {"en": page_path(None, "en", "match"), "es": page_path(None, "es", "match")},
         json.dumps(
             {
                 "@context": "https://schema.org",

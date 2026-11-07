@@ -263,20 +263,20 @@
       "slug": "la-casa-que-canta",
       "name": "La Casa que Canta",
       "focus": "retreat",
-      "town": "La Manzanilla",
-      "state": "Jalisco",
+      "town": "Zihuatanejo",
+      "state": "Guerrero",
       "langs": [
         "es",
         "en"
       ],
-      "band": 3,
+      "band": 4,
       "url": "https://www.lacasaquecanta.com",
       "status": "web",
       "checked": "2026-11-07",
-      "tagline_en": "Small rock built hotel on the bay at La Manzanilla.",
-      "tagline_es": "Hotel pequeño sobre las rocas en la bahía de La Manzanilla.",
-      "desc_en": "A small hotel on the bay at La Manzanilla on the Costa Alegre south of Barra de Navidad. La Casa que Canta is built into the rocks above the water, with a saltwater pool and rooms that face the sea, and it hosts quiet personal stays and small group takeovers.",
-      "desc_es": "Hotel pequeño en la bahía de La Manzanilla, en la Costa Alegre al sur de Barra de Navidad. La Casa que Canta está construida sobre las rocas junto al agua, con alberca de agua salada y habitaciones mirando al mar, y recibe estancias tranquilas y tomas completas de grupos pequeños."
+      "tagline_en": "Cliffside boutique hotel above Playa La Ropa in Zihuatanejo bay.",
+      "tagline_es": "Hotel boutique en el acantilado de Playa La Ropa, bahía de Zihuatanejo.",
+      "desc_en": "A boutique hotel built into the cliffs above Playa La Ropa, on Zihuatanejo bay in Guerrero. La Casa que Canta has sea facing suites, a saltwater pool at the edge of the rock, terraced decks over the water, and a quiet adults oriented atmosphere. It suits slow coastal stays and small celebrations.",
+      "desc_es": "Hotel boutique construido sobre los acantilados de Playa La Ropa, en la bahía de Zihuatanejo, Guerrero. La Casa que Canta ofrece suites mirando al mar, alberca de agua salada al borde de la roca y terrazas escalonadas sobre el agua, con un ambiente tranquilo orientado a adultos. Conviene a estancias costeras lentas y celebraciones pequeñas."
     },
     {
       "slug": "verana",
@@ -403,7 +403,7 @@
         "es"
       ],
       "band": 1,
-      "url": "https://visitmexico.com/teotitlan-del-valle",
+      "url": "https://es.wikipedia.org/wiki/Teotitl%C3%A1n_del_Valle",
       "status": "web",
       "checked": "2026-11-07",
       "tagline_en": "Zapotec weaving village famous for naturally dyed wool rugs.",
@@ -421,7 +421,7 @@
         "es"
       ],
       "band": 1,
-      "url": "https://visitmexico.com/san-bartolo-coyotepec",
+      "url": "https://es.wikipedia.org/wiki/San_Bartolo_Coyotepec",
       "status": "web",
       "checked": "2026-11-07",
       "tagline_en": "Home of Oaxaca black pottery, worked by hand in family talleres.",
@@ -439,7 +439,7 @@
         "es"
       ],
       "band": 1,
-      "url": "https://visitmexico.com/mata-ortiz",
+      "url": "https://www.visitachihuahua.mx/mata-ortiz",
       "status": "web",
       "checked": "2026-11-07",
       "tagline_en": "Northern village where hand built pottery supports dozens of family studios.",
@@ -457,7 +457,7 @@
         "es"
       ],
       "band": 1,
-      "url": "https://visitmexico.com/real-de-catorce",
+      "url": "https://es.wikipedia.org/wiki/Real_de_Catorce",
       "status": "web",
       "checked": "2026-11-07",
       "tagline_en": "High desert silver town reached through a tunnel, made for going offline.",
@@ -476,7 +476,7 @@
         "en"
       ],
       "band": 2,
-      "url": "https://visitmexico.com/bacalar",
+      "url": "https://es.wikipedia.org/wiki/Bacalar",
       "status": "web",
       "checked": "2026-11-07",
       "tagline_en": "Small town on the lagoon of seven colors, far from the crowds.",

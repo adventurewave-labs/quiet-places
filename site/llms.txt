@@ -18,7 +18,7 @@ Every place below has an English and a Spanish page with structured data. Price 
 - [Prana del Mar](https://quiet-places.vercel.app/places/prana-del-mar.html): Oceanfront yoga retreat center on the Pacific side of Los Cabos.
 - [Rancho La Puerta](https://quiet-places.vercel.app/places/rancho-la-puerta.html): Week long fitness ranch in the Tecate valley since 1940.
 - [Playa Viva](https://quiet-places.vercel.app/places/playa-viva.html): Regenerative resort with turtle and reef projects near Juluchuca.
-- [La Casa que Canta](https://quiet-places.vercel.app/places/la-casa-que-canta.html): Small rock built hotel on the bay at La Manzanilla.
+- [La Casa que Canta](https://quiet-places.vercel.app/places/la-casa-que-canta.html): Cliffside boutique hotel above Playa La Ropa in Zihuatanejo bay.
 - [Verana](https://quiet-places.vercel.app/places/verana.html): Boutique jungle hotel above the boat access village of Yelapa.
 - [Sanoviv Medical Institute](https://quiet-places.vercel.app/places/sanoviv.html): Residential health institute with week long supervised programs near Rosarito.
 - [Playa Escondida](https://quiet-places.vercel.app/places/playa-escondida.html): Adults only hideaway of bungalows in the jungle south of Sayulita.
@@ -45,7 +45,7 @@ Every place below has an English and a Spanish page with structured data. Price 
 - [Prana del Mar](https://quiet-places.vercel.app/es/lugares/prana-del-mar.html): Centro de retiros de yoga frente al Pacífico, en Los Cabos.
 - [Rancho La Puerta](https://quiet-places.vercel.app/es/lugares/rancho-la-puerta.html): Rancho de fitness de una semana en el valle de Tecate desde 1940.
 - [Playa Viva](https://quiet-places.vercel.app/es/lugares/playa-viva.html): Resort regenerativo con proyectos de tortugas y arrecife cerca de Juluchuca.
-- [La Casa que Canta](https://quiet-places.vercel.app/es/lugares/la-casa-que-canta.html): Hotel pequeño sobre las rocas en la bahía de La Manzanilla.
+- [La Casa que Canta](https://quiet-places.vercel.app/es/lugares/la-casa-que-canta.html): Hotel boutique en el acantilado de Playa La Ropa, bahía de Zihuatanejo.
 - [Verana](https://quiet-places.vercel.app/es/lugares/verana.html): Hotel boutique en la selva sobre el pueblo de Yelapa.
 - [Sanoviv Medical Institute](https://quiet-places.vercel.app/es/lugares/sanoviv.html): Instituto de salud residencial con programas supervisados de una semana cerca de Rosarito.
 - [Playa Escondida](https://quiet-places.vercel.app/es/lugares/playa-escondida.html): Refugio solo para adultos con bungalows en la selva al sur de Sayulita.

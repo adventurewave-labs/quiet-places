@@ -87,15 +87,6 @@ class DataIntegrity(BuildHarness):
             for lang in ("en", "es"):
                 self.assertLessEqual(words(p[f"tagline_{lang}"]), 14, p["slug"])
 
-    def test_no_em_or_en_dash_in_data(self):
-        strings = [(p["slug"], p["name"], p["town"], p["state"],
-                    p["tagline_en"], p["tagline_es"], p["desc_en"], p["desc_es"])
-                   for p in self.places]
-        for item in strings:
-            for text in item:
-                self.assertNotIn("\u2014", text)
-                self.assertNotIn("\u2013", text)
-
 
 class OutputCompleteness(BuildHarness):
     def test_all_place_pages_exist(self):
@@ -155,6 +146,17 @@ class PageQuality(BuildHarness):
             text = path.read_text(encoding="utf-8")
             self.assertNotIn("\u2014", str(path) + text)
             self.assertNotIn("\u2013", text)
+
+    def test_band_wording_matches_price_unit(self):
+        """Regression: a day spa once rendered 'per person per night'."""
+        day = next(p for p in self.places if p.get("price_unit") == "day")
+        night = next(p for p in self.places if p.get("price_unit", "night") == "night")
+        for lang in ("en", "es"):
+            day_html = self.page(day["slug"], lang).read_text(encoding="utf-8")
+            night_html = self.page(night["slug"], lang).read_text(encoding="utf-8")
+            self.assertIn(build.PRICE_UNIT["day"][lang], day_html)
+            self.assertIn(build.PRICE_UNIT["night"][lang], night_html)
+            self.assertNotIn(build.PRICE_UNIT["night"][lang], day_html)
 
     def test_hero_is_citable_length(self):
         for text in (build.HERO_EN, build.HERO_ES):
