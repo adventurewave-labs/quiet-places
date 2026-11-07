@@ -145,6 +145,16 @@ def page_url(slug, lang, kind="place"):
     raise ValueError(kind)
 
 
+def guide_url(slug, lang):
+    if slug is None:
+        return f"{BASE_URL}/guides/index.html" if lang == "en" else f"{BASE_URL}/es/guias/index.html"
+    return f"{BASE_URL}/guides/{slug}.html" if lang == "en" else f"{BASE_URL}/es/guias/{slug}.html"
+
+
+def guide_path(slug, lang):
+    return guide_url(slug, lang).removeprefix(BASE_URL)
+
+
 def page_path(slug, lang, kind="place"):
     """Root-relative form of page_url, for links that must stay inside
     whatever host renders the page (preview deploys, custom domains)."""
@@ -246,6 +256,7 @@ def layout(lang, title, desc, canonical, hreflang_for, body_jsonld, content, upd
     <a href="{home}#directory">{t('Directory', 'Directorio')}</a>
     <a href="{home}#methodology">{t('Methodology', 'Metodología')}</a>
     <a href="{match}">{t('Residency match', 'Vinculación de residencias')}</a>
+    <a href="{"/guides/index.html" if not es else "/es/guias/index.html"}">{t('Relocation guides', 'Guías de mudanza')}</a>
     <a class="lang" href="{other_url}" hreflang="{other}">{nav_label}</a>
   </nav>
 </header>
@@ -519,7 +530,7 @@ footer p { max-width: 62rem; margin: 0.3rem auto; }
 """
 
 
-def llms_txt(places, updated, full=False):
+def llms_txt(places, towns, updated, full=False):
     lines = [
         "# Quiet Places",
         "",
@@ -540,6 +551,20 @@ def llms_txt(places, updated, full=False):
         if full:
             line += f" {p['desc_es']}"
         lines.append(line)
+    lines += ["", "## Relocation guides, English"]
+    for town in towns:
+        lead = town["lead_en"]
+        first = lead.split(". ")[0] + ("." if not lead.split(". ")[0].endswith(".") else "")
+        if full:
+            first = lead
+        lines.append(f"- [{town['name']}]({guide_url(town['slug'], 'en')}): {first}")
+    lines += ["", "## Guías de mudanza, español"]
+    for town in towns:
+        lead = town["lead_es"]
+        first = lead.split(". ")[0] + ("." if not lead.split(". ")[0].endswith(".") else "")
+        if full:
+            first = lead
+        lines.append(f"- [{town['name']}]({guide_url(town['slug'], 'es')}): {first}")
     lines += [
         "",
         "## Residency match",
@@ -552,17 +577,28 @@ def llms_txt(places, updated, full=False):
     return "\n".join(lines) + "\n"
 
 
-def sitemap(places):
+def sitemap(places, towns):
     urls = [("en", "home", None), ("es", "home", None), ("en", "match", None), ("es", "match", None)]
     urls += [("en", "place", p["slug"]) for p in places] + [("es", "place", p["slug"]) for p in places]
+    urls += [("en", "guide", t["slug"]) for t in towns] + [("es", "guide", t["slug"]) for t in towns]
+    urls += [("en", "guides", None), ("es", "guides", None)]
     items = []
     for lang, kind, slug in urls:
-        url = page_url(slug, lang, kind) if kind != "place" else page_url(slug, lang)
-        alts = ""
-        if kind in ("home", "match"):
-            other = page_url(slug, "es" if lang == "en" else "en", kind)
+        if kind == "guide":
+            url = guide_url(slug, lang)
+        elif kind == "guides":
+            url = guide_url(None, lang)
+        elif kind == "place":
+            url = page_url(slug, lang)
         else:
-            other = page_url(slug, "es" if lang == "en" else "en")
+            url = page_url(slug, lang, kind)
+        other = (
+            guide_url(None, "es" if lang == "en" else "en") if kind == "guides"
+            else guide_url(slug, "es" if lang == "en" else "en") if kind == "guide"
+            else page_url(slug, "es" if lang == "en" else "en", kind) if kind in ("home", "match")
+            else page_url(slug, "es" if lang == "en" else "en")
+        )
+        alts = ""
         for code, href in (("en", url if lang == "en" else other), ("es", url if lang == "es" else other)):
             alts += f'    <xhtml:link rel="alternate" hreflang="{code}" href="{escape(href, quote=True)}"/>\n'
         items.append(
@@ -627,6 +663,34 @@ def build_into(outdir: Path):
     (out / "es" / "vinculacion").mkdir(parents=True, exist_ok=True)
     (out / "assets").mkdir(parents=True, exist_ok=True)
 
+    import guides as guides_mod
+
+    relocation = guides_mod.load_relocation()
+    towns = relocation["towns"]
+    place_slugs = {p["slug"] for p in places}
+    for town in towns:
+        if town["slug"] == "index":  # would overwrite the guides index page
+            raise SystemExit(f"relocation slug {town['slug']!r} is reserved")
+        if town["place_slug"] not in place_slugs:
+            raise SystemExit(
+                f"relocation place_slug {town['place_slug']!r} has no directory entry"
+            )
+    (out / "guides").mkdir(parents=True, exist_ok=True)
+    (out / "es" / "guias").mkdir(parents=True, exist_ok=True)
+    (out / "guides" / "index.html").write_text(
+        guides_mod.guides_index(towns, "en", relocation, relocation["meta"]["updated"]), encoding="utf-8"
+    )
+    (out / "es" / "guias" / "index.html").write_text(
+        guides_mod.guides_index(towns, "es", relocation, relocation["meta"]["updated"]), encoding="utf-8"
+    )
+    for town in towns:
+        (out / "guides" / f"{town['slug']}.html").write_text(
+            guides_mod.guide_page(town, "en", relocation, relocation["meta"]["updated"]), encoding="utf-8"
+        )
+        (out / "es" / "guias" / f"{town['slug']}.html").write_text(
+            guides_mod.guide_page(town, "es", relocation, relocation["meta"]["updated"]), encoding="utf-8"
+        )
+
     (out / "index.html").write_text(home_page(places, "en", updated), encoding="utf-8")
     (out / "es" / "index.html").write_text(home_page(places, "es", updated), encoding="utf-8")
     for p in places:
@@ -635,9 +699,9 @@ def build_into(outdir: Path):
     (out / "match" / "index.html").write_text(match_page("en", updated), encoding="utf-8")
     (out / "es" / "vinculacion" / "index.html").write_text(match_page("es", updated), encoding="utf-8")
     (out / "assets" / "style.css").write_text(STYLE, encoding="utf-8")
-    (out / "llms.txt").write_text(llms_txt(places, updated), encoding="utf-8")
-    (out / "llms-full.txt").write_text(llms_txt(places, updated, full=True), encoding="utf-8")
-    (out / "sitemap.xml").write_text(sitemap(places), encoding="utf-8")
+    (out / "llms.txt").write_text(llms_txt(places, towns, updated), encoding="utf-8")
+    (out / "llms-full.txt").write_text(llms_txt(places, towns, updated, full=True), encoding="utf-8")
+    (out / "sitemap.xml").write_text(sitemap(places, towns), encoding="utf-8")
     (out / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n", encoding="utf-8"
     )

@@ -15,6 +15,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 import build  # noqa: E402
+import guides  # noqa: E402
 
 REQUIRED_FIELDS = [
     "slug", "name", "focus", "town", "state", "langs", "band",
@@ -102,7 +103,8 @@ class OutputCompleteness(BuildHarness):
 
     def test_sitemap_covers_every_page(self):
         xml = (self.out / "sitemap.xml").read_text(encoding="utf-8")
-        self.assertEqual(xml.count("<loc>"), (len(self.places) + 2) * 2)
+        towns = json.loads((ROOT / "data" / "relocation.json").read_text(encoding="utf-8"))["towns"]
+        self.assertEqual(xml.count("<loc>"), (len(self.places) + 2 + len(towns) + 1) * 2)
 
     def test_llms_txt_format(self):
         text = (self.out / "llms.txt").read_text(encoding="utf-8")
@@ -111,6 +113,9 @@ class OutputCompleteness(BuildHarness):
         for p in self.places:
             self.assertIn(build.page_url(p["slug"], "en"), text)
             self.assertIn(build.page_url(p["slug"], "es"), text)
+        for town in json.loads((ROOT / "data" / "relocation.json").read_text(encoding="utf-8"))["towns"]:
+            self.assertIn(build.guide_url(town["slug"], "en"), text)
+            self.assertIn(build.guide_url(town["slug"], "es"), text)
 
 
 class PageQuality(BuildHarness):
@@ -192,15 +197,23 @@ class PageQuality(BuildHarness):
 
         slim = copy.deepcopy(self.data)
         removed = slim["places"].pop()
+        # removing a place also removes its relocation guide (enforced by build)
+        reloc = json.loads((ROOT / "data" / "relocation.json").read_text(encoding="utf-8"))
+        reloc["towns"] = [t for t in reloc["towns"] if t["place_slug"] != removed["slug"]]
         with tempfile.TemporaryDirectory() as td:
             slim_file = Path(td) / "slim.json"
             slim_file.write_text(json.dumps(slim), encoding="utf-8")
+            reloc_file = Path(td) / "relocation.json"
+            reloc_file.write_text(json.dumps(reloc), encoding="utf-8")
             original = build.DATA_FILE
+            original_reloc = guides.RELOCATION_FILE
             build.DATA_FILE = slim_file
+            guides.RELOCATION_FILE = reloc_file
             try:
                 build.build_into(self.out)  # rebuild over the full output
             finally:
                 build.DATA_FILE = original
+                guides.RELOCATION_FILE = original_reloc
             self.assertFalse(
                 (self.out / "places" / f"{removed['slug']}.html").exists(),
                 "removed entry still in output",
@@ -313,6 +326,186 @@ class PageQuality(BuildHarness):
         for text in (build.HERO_EN, build.HERO_ES):
             n = words(text)
             self.assertTrue(40 <= n <= 60, f"hero has {n} words")
+
+
+
+
+
+class Guides(BuildHarness):
+    def guide(self, slug, lang):
+        if lang == "en":
+            return self.out / "guides" / f"{slug}.html"
+        return self.out / "es" / "guias" / f"{slug}.html"
+
+    def towns(self):
+        return json.loads((ROOT / "data" / "relocation.json").read_text(encoding="utf-8"))["towns"]
+
+    def test_all_guide_pages_exist(self):
+        for town in self.towns():
+            for lang in ("en", "es"):
+                self.assertTrue(self.guide(town["slug"], lang).exists(), f"{town['slug']} {lang}")
+        self.assertTrue((self.out / "guides" / "index.html").exists())
+        self.assertTrue((self.out / "es" / "guias" / "index.html").exists())
+
+    def test_guide_lead_is_citable_length(self):
+        for town in self.towns():
+            for lang in ("en", "es"):
+                n = words(town[f"lead_{lang}"])
+                self.assertTrue(40 <= n <= 60, f"{town['slug']}.lead_{lang} has {n} words, want 40 to 60")
+
+    def test_guide_covers_five_topics(self):
+        for town in self.towns():
+            html = self.guide(town["slug"], "en").read_text(encoding="utf-8")
+            for topic in guides.TOPICS:
+                self.assertIn(topic["title_en"], html, f"{town['slug']} missing {topic['key']}")
+
+    def test_guide_jsonld_parses(self):
+        for town in self.towns():
+            for lang in ("en", "es"):
+                html = self.guide(town["slug"], lang).read_text(encoding="utf-8")
+                block = html.split('<script type="application/ld+json">')[1].split("</script>")[0]
+                data = json.loads(block)
+                self.assertEqual(data["@type"], "Article")
+                self.assertEqual(data["about"]["address"]["addressCountry"], "MX")
+
+    def test_guide_links_directory_page(self):
+        for town in self.towns():
+            for lang in ("en", "es"):
+                html = self.guide(town["slug"], lang).read_text(encoding="utf-8")
+                if lang == "en":
+                    self.assertIn(f'href="/places/{town["place_slug"]}.html"', html)
+                else:
+                    self.assertIn(f'href="/es/lugares/{town["place_slug"]}.html"', html)
+
+    def test_home_links_guides(self):
+        html = (self.out / "index.html").read_text(encoding="utf-8")
+        self.assertIn('href="/guides/index.html"', html)
+        html_es = (self.out / "es" / "index.html").read_text(encoding="utf-8")
+        self.assertIn('href="/es/guias/index.html"', html_es)
+
+    def test_duplicate_relocation_slug_rejected(self):
+        import copy
+        import tempfile
+
+        raw = json.loads((ROOT / "data" / "relocation.json").read_text(encoding="utf-8"))
+        hostile = copy.deepcopy(raw)
+        hostile["towns"][1]["slug"] = hostile["towns"][0]["slug"]
+        with tempfile.TemporaryDirectory() as td:
+            f = Path(td) / "relocation.json"
+            f.write_text(json.dumps(hostile), encoding="utf-8")
+            original = guides.RELOCATION_FILE
+            guides.RELOCATION_FILE = f
+            try:
+                with self.assertRaises(SystemExit):
+                    guides.load_relocation()
+            finally:
+                guides.RELOCATION_FILE = original
+
+    def test_unsafe_relocation_source_scheme_rejected(self):
+        import copy
+        import tempfile
+
+        raw = json.loads((ROOT / "data" / "relocation.json").read_text(encoding="utf-8"))
+        hostile = copy.deepcopy(raw)
+        hostile["sources"][0]["url"] = "javascript:alert(1)"
+        with tempfile.TemporaryDirectory() as td:
+            f = Path(td) / "relocation.json"
+            f.write_text(json.dumps(hostile), encoding="utf-8")
+            original = guides.RELOCATION_FILE
+            guides.RELOCATION_FILE = f
+            try:
+                with self.assertRaises(SystemExit):
+                    guides.load_relocation()
+            finally:
+                guides.RELOCATION_FILE = original
+
+    def test_reserved_relocation_slug_rejected(self):
+        """A town slug 'index' would overwrite the guides index page. (A slug
+        equal to a directory entry is fine: guides and places live in
+        different output directories.)"""
+        import copy
+        import tempfile
+
+        raw = json.loads((ROOT / "data" / "relocation.json").read_text(encoding="utf-8"))
+        for bad_slug in ("index",):
+            hostile = copy.deepcopy(raw)
+            hostile["towns"][0]["slug"] = bad_slug
+            with tempfile.TemporaryDirectory() as td:
+                f = Path(td) / "relocation.json"
+                f.write_text(json.dumps(hostile), encoding="utf-8")
+                original = guides.RELOCATION_FILE
+                guides.RELOCATION_FILE = f
+                try:
+                    with self.assertRaises(SystemExit):
+                        build.build_into(self.out)
+                finally:
+                    guides.RELOCATION_FILE = original
+
+    def test_unknown_place_slug_rejected(self):
+        """A guide must link a town that exists in the directory."""
+        import copy
+        import tempfile
+
+        raw = json.loads((ROOT / "data" / "relocation.json").read_text(encoding="utf-8"))
+        hostile = copy.deepcopy(raw)
+        hostile["towns"][0]["place_slug"] = "no-such-place"
+        with tempfile.TemporaryDirectory() as td:
+            f = Path(td) / "relocation.json"
+            f.write_text(json.dumps(hostile), encoding="utf-8")
+            original = guides.RELOCATION_FILE
+            guides.RELOCATION_FILE = f
+            try:
+                with self.assertRaises(SystemExit):
+                    build.build_into(self.out)
+            finally:
+                guides.RELOCATION_FILE = original
+
+    def test_hostile_relocation_slug_rejected(self):
+        """Relocation slugs are filename-safe or the build refuses."""
+        import copy
+        import tempfile
+
+        raw = json.loads((ROOT / "data" / "relocation.json").read_text(encoding="utf-8"))
+        for bad_slug in ("../../evil", "Bad_Name", "a b"):
+            hostile = copy.deepcopy(raw)
+            hostile["towns"][0]["slug"] = bad_slug
+            with tempfile.TemporaryDirectory() as td:
+                f = Path(td) / "relocation.json"
+                f.write_text(json.dumps(hostile), encoding="utf-8")
+                original = guides.RELOCATION_FILE
+                guides.RELOCATION_FILE = f
+                try:
+                    with self.assertRaises(SystemExit):
+                        guides.load_relocation()
+                finally:
+                    guides.RELOCATION_FILE = original
+
+    def test_guide_cta_escapes_town_name(self):
+        """A hostile town name cannot inject markup through the CTA line."""
+        import copy
+        import tempfile
+
+        raw = json.loads((ROOT / "data" / "relocation.json").read_text(encoding="utf-8"))
+        hostile = copy.deepcopy(raw)
+        hostile["towns"][0]["name"] = "</p><script>alert(1)</script><p>"
+        with tempfile.TemporaryDirectory() as td:
+            f = Path(td) / "relocation.json"
+            f.write_text(json.dumps(hostile), encoding="utf-8")
+            original = guides.RELOCATION_FILE
+            guides.RELOCATION_FILE = f
+            try:
+                build.build_into(self.out)
+            finally:
+                guides.RELOCATION_FILE = original
+        html = (self.out / "guides" / f"{hostile['towns'][0]['slug']}.html").read_text(encoding="utf-8")
+        self.assertEqual(html.count("<script"), 1, "script injected via town name in CTA")
+        self.assertIn("&lt;/p&gt;", html)
+
+
+
+
+if __name__ == "__main__":
+    unittest.main()
 
 
 if __name__ == "__main__":

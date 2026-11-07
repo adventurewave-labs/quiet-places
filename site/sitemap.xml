@@ -270,4 +270,64 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://quiet-places.vercel.app/places/bacalar.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://quiet-places.vercel.app/es/lugares/bacalar.html"/>
   </url>
+  <url>
+    <loc>https://quiet-places.vercel.app/guides/tepoztlan.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://quiet-places.vercel.app/guides/tepoztlan.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://quiet-places.vercel.app/es/guias/tepoztlan.html"/>
+  </url>
+  <url>
+    <loc>https://quiet-places.vercel.app/guides/bacalar.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://quiet-places.vercel.app/guides/bacalar.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://quiet-places.vercel.app/es/guias/bacalar.html"/>
+  </url>
+  <url>
+    <loc>https://quiet-places.vercel.app/guides/real-de-catorce.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://quiet-places.vercel.app/guides/real-de-catorce.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://quiet-places.vercel.app/es/guias/real-de-catorce.html"/>
+  </url>
+  <url>
+    <loc>https://quiet-places.vercel.app/guides/teotitlan-del-valle.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://quiet-places.vercel.app/guides/teotitlan-del-valle.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://quiet-places.vercel.app/es/guias/teotitlan-del-valle.html"/>
+  </url>
+  <url>
+    <loc>https://quiet-places.vercel.app/guides/san-bartolo-coyotepec.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://quiet-places.vercel.app/guides/san-bartolo-coyotepec.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://quiet-places.vercel.app/es/guias/san-bartolo-coyotepec.html"/>
+  </url>
+  <url>
+    <loc>https://quiet-places.vercel.app/es/guias/tepoztlan.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://quiet-places.vercel.app/guides/tepoztlan.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://quiet-places.vercel.app/es/guias/tepoztlan.html"/>
+  </url>
+  <url>
+    <loc>https://quiet-places.vercel.app/es/guias/bacalar.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://quiet-places.vercel.app/guides/bacalar.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://quiet-places.vercel.app/es/guias/bacalar.html"/>
+  </url>
+  <url>
+    <loc>https://quiet-places.vercel.app/es/guias/real-de-catorce.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://quiet-places.vercel.app/guides/real-de-catorce.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://quiet-places.vercel.app/es/guias/real-de-catorce.html"/>
+  </url>
+  <url>
+    <loc>https://quiet-places.vercel.app/es/guias/teotitlan-del-valle.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://quiet-places.vercel.app/guides/teotitlan-del-valle.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://quiet-places.vercel.app/es/guias/teotitlan-del-valle.html"/>
+  </url>
+  <url>
+    <loc>https://quiet-places.vercel.app/es/guias/san-bartolo-coyotepec.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://quiet-places.vercel.app/guides/san-bartolo-coyotepec.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://quiet-places.vercel.app/es/guias/san-bartolo-coyotepec.html"/>
+  </url>
+  <url>
+    <loc>https://quiet-places.vercel.app/guides/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://quiet-places.vercel.app/guides/index.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://quiet-places.vercel.app/es/guias/index.html"/>
+  </url>
+  <url>
+    <loc>https://quiet-places.vercel.app/es/guias/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://quiet-places.vercel.app/guides/index.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://quiet-places.vercel.app/es/guias/index.html"/>
+  </url>
 </urlset>

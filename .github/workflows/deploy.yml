@@ -2,7 +2,8 @@ name: Deploy to Vercel
 
 # Estate pattern (html-sites): a push to main is what deploys. site/ is
 # committed, so every merge that changes the shipped pages deploys them.
-# Requires the repo secret VERCEL_TOKEN (a Vercel token on mp's account).
+# Requires three repo secrets: VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID.
+# The token travels by env var, never argv; the CLI version is pinned.
 
 on:
   push:
@@ -35,9 +36,15 @@ jobs:
       - name: Deploy site/ to production
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: |
-          if [ -z "$VERCEL_TOKEN" ]; then
-            echo "::error::VERCEL_TOKEN secret is not set on this repo. Add it (Vercel account token) to enable deploys."
-            exit 1
-          fi
-          npx --yes vercel@latest deploy --prod --yes --token "$VERCEL_TOKEN"
+          missing=0
+          for var in VERCEL_TOKEN VERCEL_ORG_ID VERCEL_PROJECT_ID; do
+            if [ -z "${!var}" ]; then
+              echo "::error::${var} secret is not set on this repo. Add it to enable deploys."
+              missing=1
+            fi
+          done
+          [ "$missing" -eq 0 ] || exit 1
+          npx --yes vercel@65.12.1 deploy --prod --yes
