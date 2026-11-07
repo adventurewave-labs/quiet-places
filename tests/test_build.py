@@ -375,10 +375,6 @@ class Guides(BuildHarness):
         html_es = (self.out / "es" / "index.html").read_text(encoding="utf-8")
         self.assertIn('href="/es/guias/index.html"', html_es)
 
-
-if __name__ == "__main__":
-    unittest.main()
-
     def test_hostile_relocation_slug_rejected(self):
         """Relocation slugs are filename-safe or the build refuses."""
         import copy
@@ -406,7 +402,7 @@ if __name__ == "__main__":
 
         raw = json.loads((ROOT / "data" / "relocation.json").read_text(encoding="utf-8"))
         hostile = copy.deepcopy(raw)
-        hostile["towns"][0]["name"] = '</p><script>alert(1)</script><p>'
+        hostile["towns"][0]["name"] = "</p><script>alert(1)</script><p>"
         with tempfile.TemporaryDirectory() as td:
             f = Path(td) / "relocation.json"
             f.write_text(json.dumps(hostile), encoding="utf-8")
@@ -419,3 +415,13 @@ if __name__ == "__main__":
         html = (self.out / "guides" / f"{hostile['towns'][0]['slug']}.html").read_text(encoding="utf-8")
         self.assertEqual(html.count("<script"), 1, "script injected via town name in CTA")
         self.assertIn("&lt;/p&gt;", html)
+
+
+
+
+if __name__ == "__main__":
+    unittest.main()
+
+
+if __name__ == "__main__":
+    unittest.main()
