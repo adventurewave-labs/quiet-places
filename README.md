@@ -18,6 +18,10 @@ This repo is the scope holder for three PRDs from the log-off economy portfolio:
 - `tests/` builds into a temp dir and asserts data integrity, bilingual coverage, structured data, and the no em dash rule. CI runs build + tests on every PR.
 - PRD 09 residency match pages live at `/match/` (EN) and `/es/vinculacion/` (ES); the two intake forms wire up when an intake email or WhatsApp line is named.
 
+## Deploy
+
+Push to main is what deploys (estate pattern): `.github/workflows/deploy.yml` runs `vercel deploy --prod` on the repo (root `vercel.json` points the output at `site/`). It needs the repo secret `VERCEL_TOKEN`; until that is set, the deploy job fails with an explicit error and nothing ships. CI (`ci.yml`) builds and tests on every PR and refuses a commit whose `site/` does not match a fresh regeneration.
+
 ## Why this is its own repo
 
 The directory is content and structured data at internet scale, meant to outgrow any one marketplace and earn its own domain. Ancuria stays the marketplace; this is the map of the whole quiet world, including places that are not Ancuria listings.
