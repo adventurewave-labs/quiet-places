@@ -229,7 +229,7 @@ class PageQuality(BuildHarness):
             html = (self.out / "places" / f"{hostile['places'][0]['slug']}.html").read_text(encoding="utf-8")
             self.assertEqual(html.count("</script>"), 1, "script tag escaped into output")
             self.assertEqual(html.count("<script"), 1, "second script tag injected")
-            self.assertNotIn("alert(1)", html)
+            self.assertIn("\\u003c/script\\u003e", html)  # hostile payload neutralized inside JSON
 
     def test_hero_is_citable_length(self):
         for text in (build.HERO_EN, build.HERO_ES):

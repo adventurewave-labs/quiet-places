@@ -183,11 +183,14 @@ def place_jsonld(p, lang):
 
 
 def jsonld_str(data):
-    """Serialize for embedding in a <script> element: escape <, >, and & so
-    a hostile value in the data cannot close the tag or open a new one."""
+    """Prepare JSON for embedding in a <script> element: escape <, >, and & as
+    unicode escapes so a hostile value in the data cannot close the tag or open
+    a new one. The escapes stay valid JSON. Accepts a dict or an already
+    serialized JSON string."""
+    if not isinstance(data, str):
+        data = json.dumps(data, ensure_ascii=False)
     return (
-        json.dumps(data, ensure_ascii=False)
-        .replace("<", "\\u003c")
+        data.replace("<", "\\u003c")
         .replace(">", "\\u003e")
         .replace("&", "\\u0026")
     )
