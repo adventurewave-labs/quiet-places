@@ -77,7 +77,7 @@ def check(url):
     # last resort: curl, which uses the OS trust store
     try:
         proc = subprocess.run(
-            ["curl", "-sIL", "-o", "/dev/null", "-w", "%{http_code} %{url_effective}", "--max-time", str(TIMEOUT), url],
+            ["curl", "-sIL", "-o", "/dev/null", "-w", "%{http_code} %{url_effective}", "--max-time", str(TIMEOUT), "--", url],
             capture_output=True, text=True, timeout=TIMEOUT + 5,
         )
         result, detail = parse_curl(proc.returncode, proc.stdout)

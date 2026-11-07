@@ -197,13 +197,24 @@ def jsonld_str(data):
     )
 
 
-def layout(lang, title, desc, canonical, hreflang_for, body_jsonld, content, updated):
+def clip(text, limit=155):
+    """Trim to a whole word within limit so meta descriptions never cut
+    mid-word; a cut landing exactly on a word end keeps that word."""
+    if len(text) <= limit:
+        return text
+    cut = text[:limit].rstrip()
+    if text[limit] != " " and " " in cut:
+        cut = cut.rsplit(" ", 1)[0]
+    return cut
+
+
+def layout(lang, title, desc, canonical, hreflang_for, body_jsonld, content, updated, lang_switch):
     """Shared page shell. hreflang_for: dict of lang -> url for this page's alternates."""
     es = lang == "es"
     home = "/index.html" if not es else "/es/index.html"
     match = "/match/index.html" if not es else "/es/vinculacion/index.html"
     other = "en" if es else "es"
-    other_url = hreflang_for[other]
+    other_url = lang_switch
     nav_label = "Español" if not es else "English"
     t = lambda s_en, s_es: s_es if es else s_en  # noqa: E731
     alt_links = "\n".join(
@@ -220,7 +231,7 @@ def layout(lang, title, desc, canonical, hreflang_for, body_jsonld, content, upd
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{escape(title)}</title>
-<meta name="description" content="{escape(desc)}">
+<meta name="description" content="{escape(clip(desc))}">
 <link rel="canonical" href="{escape(canonical)}">
 {alt_links}
 <link rel="stylesheet" href="/assets/style.css">
@@ -319,12 +330,13 @@ def home_page(places, lang, updated):
     return layout(
         lang,
         title,
-        (HERO_ES if es else HERO_EN)[:155],
+        HERO_ES if es else HERO_EN,
         page_url(None, lang, "home"),
-        {"en": page_path(None, "en", "home"), "es": page_path(None, "es", "home")},
+        {"en": page_url(None, "en", "home"), "es": page_url(None, "es", "home")},
         website_jsonld,
         content,
         updated,
+        page_path(None, "es", "home") if not es else page_path(None, "en", "home"),
     )
 
 
@@ -333,9 +345,7 @@ def place_page(p, lang, updated):
     t = lambda s_en, s_es: s_es if es else s_en  # noqa: E731
     title = f"{p['name']} | {t('Quiet Places', 'Quiet Places')}"
     desc = p["desc_es"] if es else p["desc_en"]
-    home_href = "../index.html" if not es else "../index.html"
-    if es:
-        home_href = "../index.html"
+    home_href = "../index.html"
     focus_label = FOCUSES[p["focus"]][1] if es else FOCUSES[p["focus"]][0]
     status_label = STATUS_LABEL[p["status"]][1] if es else STATUS_LABEL[p["status"]][0]
     rows = [
@@ -373,10 +383,11 @@ def place_page(p, lang, updated):
         title,
         (p["tagline_es"] if es else p["tagline_en"]),
         page_url(p["slug"], lang),
-        {"en": page_path(p["slug"], "en"), "es": page_path(p["slug"], "es")},
+        {"en": page_url(p["slug"], "en"), "es": page_url(p["slug"], "es")},
         place_jsonld(p, lang),
         content,
         updated,
+        page_path(p["slug"], "es") if not es else page_path(p["slug"], "en"),
     )
 
 
@@ -451,7 +462,7 @@ def match_page(lang, updated):
         title,
         (desc_es if es else desc_en),
         page_url(None, lang, "match"),
-        {"en": page_path(None, "en", "match"), "es": page_path(None, "es", "match")},
+        {"en": page_url(None, "en", "match"), "es": page_url(None, "es", "match")},
         json.dumps(
             {
                 "@context": "https://schema.org",
@@ -465,6 +476,7 @@ def match_page(lang, updated):
         ),
         content,
         updated,
+        page_path(None, "es", "match") if not es else page_path(None, "en", "match"),
     )
 
 
@@ -568,6 +580,8 @@ def build_into(outdir: Path):
     raw = load_data()
     places = raw["places"]
     updated = raw["meta"]["updated"]
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", raw["meta"]["updated"]):
+        raise SystemExit(f"meta.updated {raw['meta']['updated']!r} is not an ISO date")
     slugs = [p["slug"] for p in places]
     if len(slugs) != len(set(slugs)):
         raise SystemExit("duplicate slugs in data/places.json")

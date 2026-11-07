@@ -142,10 +142,25 @@ class PageQuality(BuildHarness):
                 self.assertIn(f"{p['slug']}.html", html, f"{p['slug']} missing on {lang} home")
 
     def test_no_em_or_en_dash_in_output_html(self):
-        for path in list(self.out.rglob("*.html")) + list(self.out.rglob("*.txt")):
+        for path in list(self.out.rglob("*.html")) + list(self.out.rglob("*.txt")) + list(self.out.rglob("*.xml")):
             text = path.read_text(encoding="utf-8")
             self.assertNotIn("\u2014", str(path) + text)
             self.assertNotIn("\u2013", text)
+
+    def test_clip_cuts_at_word_boundary(self):
+        self.assertEqual(build.clip("aaa bbb ccc", 7), "aaa bbb")
+        self.assertEqual(build.clip("short", 155), "short")
+        long_text = " ".join(["word"] * 60)
+        clipped = build.clip(long_text)
+        self.assertLessEqual(len(clipped), 155)
+        self.assertTrue(long_text.startswith(clipped))
+
+    def test_meta_description_is_whole_words(self):
+        for lang, rel in (("en", "index.html"), ("es", "es/index.html")):
+            html = (self.out / rel).read_text(encoding="utf-8")
+            match = re.search(r'<meta name="description" content="([^"]*)"', html)
+            hero = build.HERO_ES if lang == "es" else build.HERO_EN
+            self.assertEqual(match.group(1), build.clip(hero))
 
     def test_band_wording_matches_price_unit(self):
         """Regression: a day spa once rendered 'per person per night'."""
@@ -273,25 +288,26 @@ class PageQuality(BuildHarness):
             html = (self.out / "places" / f"{hostile['places'][0]['slug']}.html").read_text(encoding="utf-8")
             self.assertNotIn(f'href="{bad}"', html)
 
-    def test_hostile_update_date_rejected_from_markup(self):
-        """Regression: meta.updated flowed into the footer unescaped."""
+    def test_hostile_update_date_rejected(self):
+        """meta.updated must be an ISO date: a hostile value is rejected at
+        build time, and the footer still escapes whatever it renders."""
         import copy
         import tempfile
 
         hostile = copy.deepcopy(self.data)
         hostile["meta"]["updated"] = "</p><script>alert(1)</script><p>"
+        before = sorted(str(x) for x in self.out.rglob("*"))
         with tempfile.TemporaryDirectory() as td:
             hostile_file = Path(td) / "hostile.json"
             hostile_file.write_text(json.dumps(hostile), encoding="utf-8")
             original = build.DATA_FILE
             build.DATA_FILE = hostile_file
             try:
-                build.build_into(self.out)
+                with self.assertRaises(SystemExit):
+                    build.build_into(self.out)
             finally:
                 build.DATA_FILE = original
-            html = (self.out / "index.html").read_text(encoding="utf-8")
-            self.assertEqual(html.count("<script"), 1, "script injected via meta.updated")
-            self.assertIn("&lt;/p&gt;", html)
+        self.assertEqual(before, sorted(str(x) for x in self.out.rglob("*")), "output tree changed on rejection")
 
     def test_hero_is_citable_length(self):
         for text in (build.HERO_EN, build.HERO_ES):
