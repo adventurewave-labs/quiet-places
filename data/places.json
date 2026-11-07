@@ -1,0 +1,507 @@
+{
+  "meta": {
+    "updated": "2026-11-07",
+    "statuses": {
+      "web": "Entered from and linked to a public web source, usually the place's own site. Not yet confirmed on the ground.",
+      "sweep": "Confirmed in person by a Market Watch sweep pass."
+    },
+    "band_legend": "Per person per night equivalent for stays, per day for programs. 1 under MX$1,000. 2 MX$1,000 to 3,000. 3 MX$3,000 to 7,000. 4 above MX$7,000. Indicative at entry, confirmed by the sweep pass."
+  },
+  "places": [
+    {
+      "slug": "arquetopia",
+      "name": "Arquetopia",
+      "focus": "art",
+      "town": "Puebla and Oaxaca City",
+      "state": "Puebla / Oaxaca",
+      "langs": [
+        "es",
+        "en"
+      ],
+      "band": 2,
+      "url": "https://www.arquetopia.org",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "International artist residencies in Puebla and Oaxaca, themed sessions year round.",
+      "tagline_es": "Residencias artísticas internacionales en Puebla y Oaxaca, con sesiones temáticas todo el año.",
+      "desc_en": "An international artist residency foundation with programs in Puebla and Oaxaca. Arquetopia runs themed sessions in ceramic, textile, printmaking, and writing, hosted in colonial buildings with dedicated studio space and staff. Programs run from two weeks upward and draw artists, scholars, and curators from many countries. Instruction is in Spanish and English.",
+      "desc_es": "Fundación internacional de residencias artísticas con programas en Puebla y Oaxaca. Arquetopia ofrece sesiones temáticas de cerámica, textil, grabado y escritura, en edificios coloniales con estudios dedicados y personal de apoyo. Los programas van de dos semanas en adelante y reúnen a artistas, académicos y curadores de muchos países. La instrucción se da en español e inglés.",
+      "price_unit": "day",
+      "contact": "https://www.arquetopia.org"
+    },
+    {
+      "slug": "casa-wabi",
+      "name": "Casa Wabi",
+      "focus": "art",
+      "town": "Puerto Escondido",
+      "state": "Oaxaca",
+      "langs": [
+        "es",
+        "en"
+      ],
+      "band": 2,
+      "url": "https://casawabi.org",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "Coastal foundation for artist residencies by Bosco Sodi near Puerto Escondido.",
+      "tagline_es": "Fundación costera de residencias artísticas de Bosco Sodi cerca de Puerto Escondido.",
+      "desc_en": "A foundation on the Oaxacan coast near Puerto Escondido, founded by artist Bosco Sodi. Casa Wabi hosts residencies for artists of many disciplines on a site that includes pavilions by noted architects, a clay kiln, and an open program for local schools. Stays are by application and the calendar follows seasonal sessions.",
+      "desc_es": "Fundación en la costa de Oaxaca cerca de Puerto Escondido, creada por el artista Bosco Sodi. Casa Wabi recibe residencias para artistas de muchas disciplinas, en un terreno con pabellones de arquitectos reconocidos, un horno de barro y un programa abierto para escuelas locales. Las estancias son por convocatoria y el calendario sigue sesiones de temporada.",
+      "price_unit": "day",
+      "contact": "https://casawabi.org"
+    },
+    {
+      "slug": "360-xochi-quetzal",
+      "name": "360 Xochi Quetzal",
+      "focus": "art",
+      "town": "Chapala",
+      "state": "Jalisco",
+      "langs": [
+        "es",
+        "en"
+      ],
+      "band": 1,
+      "url": "https://www.360xqmx.com",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "Self directed residency for artists and writers on Lake Chapala.",
+      "tagline_es": "Residencia autodirigida para artistas y escritores en el lago de Chapala.",
+      "desc_en": "A private residency for artists, writers, and musicians on Lake Chapala, an hour from Guadalajara. Sessions are self directed: residents get a room, workspace, and a small creative community, and bring their own project. The town has a large expat and artist population, weekly markets, and a mild climate through the year.",
+      "desc_es": "Residencia privada para artistas, escritores y músicos en el lago de Chapala, a una hora de Guadalajara. Las sesiones son autodirigidas: los residentes cuentan con habitación, espacio de trabajo y una pequeña comunidad creativa, y traen su propio proyecto. El pueblo tiene una población amplia de artistas y expatriados, mercados semanales y un clima templado todo el año.",
+      "price_unit": "day",
+      "contact": "https://www.360xqmx.com"
+    },
+    {
+      "slug": "guapamacataro",
+      "name": "Guapamacátaro Art and Ecology",
+      "focus": "art",
+      "town": "Hidalgo",
+      "state": "Michoacán",
+      "langs": [
+        "es",
+        "en"
+      ],
+      "band": 2,
+      "url": "https://guapamacataro.org",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "Art and ecology residency on a rural Michoacán hacienda.",
+      "tagline_es": "Residencia de arte y ecología en una hacienda rural de Michoacán.",
+      "desc_en": "An art and ecology residency held on a former hacienda in rural Michoacán, between Morelia and Quiroga. Sessions gather a small cohort around themes like land, food systems, and community, with studios, a library, and fields to walk. The program is bilingual and sized for deep work rather than output.",
+      "desc_es": "Residencia de arte y ecología en una ex hacienda del rural michoacano, entre Morelia y Quiroga. Las sesiones reúnen a un grupo pequeño en torno a temas como la tierra, los alimentos y la comunidad, con estudios, una biblioteca y campos para caminar. El programa es bilingüe y pensado para trabajo profundo más que para producción.",
+      "price_unit": "day",
+      "contact": "https://guapamacataro.org"
+    },
+    {
+      "slug": "haramara",
+      "name": "Haramara Retreat",
+      "focus": "retreat",
+      "town": "Sayulita",
+      "state": "Nayarit",
+      "langs": [
+        "es",
+        "en"
+      ],
+      "band": 3,
+      "url": "https://haramararetreat.com",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "Yoga retreat center above Sayulita beach, palapas and saltwater pool.",
+      "tagline_es": "Centro de retiros de yoga sobre la playa de Sayulita, palapas y alberca.",
+      "desc_en": "A yoga retreat center on a hillside above Sayulita beach in Nayarit. Haramara runs its own calendar of retreats and hosts visiting teachers, with open air yoga palapas, hand built casitas, a saltwater pool, and a dining room keyed to the retreat schedule. The grounds are pedestrian only and town is a short walk.",
+      "desc_es": "Centro de retiros de yoga en una ladera sobre la playa de Sayulita, en Nayarit. Haramara opera su propio calendario de retiros y recibe maestros visitantes, con palapas al aire libre, casitas hechas a mano, alberca de agua salada y un comedor sincronizado con el programa del retiro. El terreno es peatonal y el pueblo queda a pocos pasos.",
+      "contact": "https://haramararetreat.com"
+    },
+    {
+      "slug": "xinalani",
+      "name": "Xinalani Retreat",
+      "focus": "retreat",
+      "town": "Quimixto",
+      "state": "Jalisco",
+      "langs": [
+        "es",
+        "en"
+      ],
+      "band": 3,
+      "url": "https://xinalaniretreat.com",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "Boat access beachfront yoga retreat south of Puerto Vallarta.",
+      "tagline_es": "Retiro de yoga frente al mar al sur de Puerto Vallarta, por lancha.",
+      "desc_en": "A beachfront yoga retreat south of Puerto Vallarta, reached by boat from the city. Xinalani has palm roofed rooms, several yoga decks facing the ocean, a spa, and healthy dining, and it hosts both its own retreats and visiting teacher groups. No road reaches the beach, which keeps the cove quiet.",
+      "desc_es": "Retiro de yoga frente al mar al sur de Puerto Vallarta, se llega en lancha desde la ciudad. Xinalani tiene habitaciones de techo de palma, varias terrazas de yoga mirando al mar, spa y cocina saludable, y recibe tanto retiros propios como grupos de maestros visitantes. No hay carretera hasta la playa, la calma de la ensenada se conserva.",
+      "contact": "https://xinalaniretreat.com"
+    },
+    {
+      "slug": "present-moment",
+      "name": "Present Moment Retreat",
+      "focus": "retreat",
+      "town": "Troncones",
+      "state": "Guerrero",
+      "langs": [
+        "es",
+        "en"
+      ],
+      "band": 3,
+      "url": "https://www.presentmomentretreat.com",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "Yoga and surf retreat on the quiet beach of Troncones.",
+      "tagline_es": "Retiro de yoga y surf en la playa tranquila de Troncones.",
+      "desc_en": "A beachfront retreat in Troncones, a quiet surf village on the Guerrero coast north of Ixtapa. Present Moment pairs daily yoga and meditation with surfing, spa treatments, and communal meals, and it runs both personal stays and hosted group weeks. The village has no high rises and the beach is the main road.",
+      "desc_es": "Retiro frente al mar en Troncones, un pueblo tranquilo de surf en la costa de Guerrero, al norte de Ixtapa. Present Moment combina yoga y meditación diarias con surf, spa y comidas comunitarias, y recibe tanto huéspedes individuales como grupos por semana. El pueblo no tiene desarrollos altos y la playa es la calle principal.",
+      "contact": "https://www.presentmomentretreat.com"
+    },
+    {
+      "slug": "amansala",
+      "name": "Amansala",
+      "focus": "retreat",
+      "town": "Tulum",
+      "state": "Quintana Roo",
+      "langs": [
+        "es",
+        "en"
+      ],
+      "band": 3,
+      "url": "https://amansala.com",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "Eco chic Tulum hotel known for yoga and fitness retreat weeks.",
+      "tagline_es": "Hotel eco chic en Tulum, conocido por sus semanas de retiro de yoga.",
+      "desc_en": "An eco chic beachfront hotel in Tulum known for retreat weeks that mix yoga, fitness classes, and beach time. Amansala hosts its own signature programs and outside groups, with simple comfortable rooms, a beach club, and food built around local produce. The Tulum beach road puts cenotes and ruins within short rides.",
+      "desc_es": "Hotel eco chic frente al mar en Tulum, conocido por sus semanas de retiro que combinan yoga, clases de acondicionamiento y playa. Amansala recibe programas propios y grupos externos, con habitaciones sencillas y cómodas, club de playa y cocina basada en producto local. El camino costero deja cenotes y ruinas a pocos minutos.",
+      "contact": "https://amansala.com"
+    },
+    {
+      "slug": "mar-de-jade",
+      "name": "Mar de Jade",
+      "focus": "retreat",
+      "town": "Chacala",
+      "state": "Nayarit",
+      "langs": [
+        "es",
+        "en"
+      ],
+      "band": 3,
+      "url": "https://mardejade.com",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "Family run wellness retreat on Chacala beach since the 1980s.",
+      "tagline_es": "Retiro de bienestar familiar en la playa de Chacala desde los años ochenta.",
+      "desc_en": "A family run wellness retreat on Chacala beach in Nayarit, operating since the 1980s. Mar de Jade combines daily yoga and meditation with spa services, surf, and volunteer work with local clinics and farms. It hosts visiting groups and individual guests, and the rooms open onto the sand or the garden.",
+      "desc_es": "Retiro de bienestar familiar en la playa de Chacala, Nayarit, en operación desde los años ochenta. Mar de Jade combina yoga y meditación diarias con servicios de spa, surf y trabajo voluntario con clínicas y granjas locales. Recibe grupos e invitados individuales, y las habitaciones abren a la arena o al jardín.",
+      "contact": "https://mardejade.com"
+    },
+    {
+      "slug": "casa-om",
+      "name": "Casa Om",
+      "focus": "retreat",
+      "town": "Puerto Morelos",
+      "state": "Quintana Roo",
+      "langs": [
+        "es",
+        "en"
+      ],
+      "band": 2,
+      "url": "https://www.casaom.com",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "Retreat house with yoga shala near Puerto Morelos reef village.",
+      "tagline_es": "Casa de retiros con shala de yoga cerca del arrecife de Puerto Morelos.",
+      "desc_en": "A retreat house near Puerto Morelos, a fishing village between Cancun and Playa del Carmen. Casa Om centers on a yoga shala and a heated pool, hosts teacher led group weeks and training programs, and keeps the pace slow with shared dinners. The reef offshore is a national park a short swim out.",
+      "desc_es": "Casa de retiros cerca de Puerto Morelos, un pueblo pesquero entre Cancún y Playa del Carmen. Casa Om gira en torno a un shala de yoga y una alberca temperada, recibe semanas de grupo y programas de formación, y mantiene un ritmo pausado con cenas compartidas. El arrecife frente a la playa es un parque nacional a pocos metros.",
+      "contact": "https://www.casaom.com"
+    },
+    {
+      "slug": "prana-del-mar",
+      "name": "Prana del Mar",
+      "focus": "retreat",
+      "town": "El Pescadero",
+      "state": "Baja California Sur",
+      "langs": [
+        "es",
+        "en"
+      ],
+      "band": 3,
+      "url": "https://pranadelmar.com",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "Oceanfront yoga retreat center on the Pacific side of Los Cabos.",
+      "tagline_es": "Centro de retiros de yoga frente al Pacífico, en Los Cabos.",
+      "desc_en": "A yoga and wellness retreat center on the Pacific side of the Cabo corridor, near the village of El Pescadero. Prana del Mar has a large oceanfront shala, suites and garden rooms, an organic garden, and a pool, and it hosts visiting teacher groups and personal retreats in season.",
+      "desc_es": "Centro de retiros de yoga y bienestar en el lado pacífico del corredor de Los Cabos, cerca del pueblo de El Pescadero. Prana del Mar tiene un shala frente al mar, suites y habitaciones de jardín, huerto orgánico y alberca, y recibe grupos de maestros visitantes y retiros personales en temporada.",
+      "contact": "https://pranadelmar.com"
+    },
+    {
+      "slug": "rancho-la-puerta",
+      "name": "Rancho La Puerta",
+      "focus": "retreat",
+      "town": "Tecate",
+      "state": "Baja California",
+      "langs": [
+        "en",
+        "es"
+      ],
+      "band": 4,
+      "url": "https://rancholapuerta.com",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "Week long fitness ranch in the Tecate valley since 1940.",
+      "tagline_es": "Rancho de fitness de una semana en el valle de Tecate desde 1940.",
+      "desc_en": "A week long fitness ranch across the border from San Diego, in the Tecate valley. Rancho La Puerta has run since 1940 with a full daily schedule of hikes, classes, meals, and talks across a large private mountain property. Guests come for the week, and many return for decades.",
+      "desc_es": "Rancho de fitness de una semana justo al otro lado de la frontera de San Diego, en el valle de Tecate. Rancho La Puerta opera desde 1940 con una agenda diaria completa de caminatas, clases, comidas y pláticas en una gran propiedad privada de montaña. Los huéspedes llegan por la semana y muchos vuelven por décadas.",
+      "contact": "https://rancholapuerta.com"
+    },
+    {
+      "slug": "playa-viva",
+      "name": "Playa Viva",
+      "focus": "retreat",
+      "town": "Juluchuca",
+      "state": "Guerrero",
+      "langs": [
+        "es",
+        "en"
+      ],
+      "band": 4,
+      "url": "https://www.playaviva.com",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "Regenerative resort with turtle and reef projects near Juluchuca.",
+      "tagline_es": "Resort regenerativo con proyectos de tortugas y arrecife cerca de Juluchuca.",
+      "desc_en": "A regenerative resort on a private stretch of coast near Juluchuca, between Zihuatanejo and Manzanillo. Playa Viva runs on solar power, works with the local community on reef and turtle projects, and hosts both guests and group retreats in casitas built from local materials. The estuary behind the beach draws birds year round.",
+      "desc_es": "Resort regenerativo en un tramo privado de costa cerca de Juluchuca, entre Zihuatanejo y Manzanillo. Playa Viva funciona con energía solar, colabora con la comunidad en proyectos de arrecife y tortugas, y recibe huéspedes y retiros grupales en casitas de materiales locales. El estero detrás de la playa atrae aves todo el año.",
+      "contact": "https://www.playaviva.com"
+    },
+    {
+      "slug": "la-casa-que-canta",
+      "name": "La Casa que Canta",
+      "focus": "retreat",
+      "town": "Zihuatanejo",
+      "state": "Guerrero",
+      "langs": [
+        "es",
+        "en"
+      ],
+      "band": 4,
+      "url": "https://www.lacasaquecanta.com",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "Cliffside boutique hotel above Playa La Ropa in Zihuatanejo bay.",
+      "tagline_es": "Hotel boutique en el acantilado de Playa La Ropa, bahía de Zihuatanejo.",
+      "desc_en": "A boutique hotel built into the cliffs above Playa La Ropa, on Zihuatanejo bay in Guerrero. La Casa que Canta has sea facing suites, a saltwater pool at the edge of the rock, terraced decks over the water, and a quiet adults oriented atmosphere. It suits slow coastal stays and small celebrations.",
+      "desc_es": "Hotel boutique construido sobre los acantilados de Playa La Ropa, en la bahía de Zihuatanejo, Guerrero. La Casa que Canta ofrece suites mirando al mar, alberca de agua salada al borde de la roca y terrazas escalonadas sobre el agua, con un ambiente tranquilo orientado a adultos. Conviene a estancias costeras lentas y celebraciones pequeñas.",
+      "contact": "https://www.lacasaquecanta.com"
+    },
+    {
+      "slug": "verana",
+      "name": "Verana",
+      "focus": "retreat",
+      "town": "Yelapa",
+      "state": "Jalisco",
+      "langs": [
+        "es",
+        "en"
+      ],
+      "band": 3,
+      "url": "https://verana.com",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "Boutique jungle hotel above the boat access village of Yelapa.",
+      "tagline_es": "Hotel boutique en la selva sobre el pueblo de Yelapa.",
+      "desc_en": "A boutique hotel above the boat access village of Yelapa, south of Puerto Vallarta. Verana sits in the jungle with views down to the bay, a small spa, and a pool, and it hosts individual stays and full house bookings for groups. There are no cars in Yelapa, which keeps nights quiet.",
+      "desc_es": "Hotel boutique sobre el pueblo de Yelapa, al que solo se llega en lancha, al sur de Puerto Vallarta. Verana está en la selva con vistas a la bahía, un spa pequeño y una alberca, y recibe estancias individuales y reservas de casa completa para grupos. En Yelapa no hay autos, y las noches se quedan calladas.",
+      "contact": "https://verana.com"
+    },
+    {
+      "slug": "sanoviv",
+      "name": "Sanoviv Medical Institute",
+      "focus": "retreat",
+      "town": "Rosarito",
+      "state": "Baja California",
+      "langs": [
+        "en",
+        "es"
+      ],
+      "band": 4,
+      "url": "https://www.sanoviv.com",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "Residential health institute with week long supervised programs near Rosarito.",
+      "tagline_es": "Instituto de salud residencial con programas supervisados de una semana cerca de Rosarito.",
+      "desc_en": "A residential health institute on the coast south of Rosarito in Baja California. Sanoviv runs week long programs that combine medical assessment, nutrition, movement, and spa therapy in one campus, with lodging and meals included. It suits people who want a structured reset under medical supervision rather than a free form retreat.",
+      "desc_es": "Instituto de salud residencial en la costa al sur de Rosarito, Baja California. Sanoviv ofrece programas de una semana que combinan evaluación médica, nutrición, movimiento y terapia de spa en un solo campus, con alojamiento y alimentos incluidos. Conviene a quien busca un reinicio estructurado con supervisión médica más que un retiro libre.",
+      "contact": "https://www.sanoviv.com"
+    },
+    {
+      "slug": "playa-escondida",
+      "name": "Playa Escondida",
+      "focus": "retreat",
+      "town": "Sayulita",
+      "state": "Nayarit",
+      "langs": [
+        "es",
+        "en"
+      ],
+      "band": 3,
+      "url": "https://playaescondida.com",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "Adults only hideaway of bungalows in the jungle south of Sayulita.",
+      "tagline_es": "Refugio solo para adultos con bungalows en la selva al sur de Sayulita.",
+      "desc_en": "A hideaway of palapa roofed bungalows in the jungle between Sayulita and San Francisco, Nayarit. Playa Escondida is adults only, with a private beach path, a pool built into the rocks, yoga on its own deck, and restaurant meals by lantern light. It hosts small retreat groups and individual stays.",
+      "desc_es": "Refugio de bungalows con techo de palma en la selva entre Sayulita y San Francisco, Nayarit. Playa Escondida es solo para adultos, con camino privado a la playa, alberca entre rocas, yoga en su propia terraza y comidas a la luz de las velas. Recibe grupos pequeños de retiro y estancias individuales.",
+      "contact": "https://playaescondida.com"
+    },
+    {
+      "slug": "yaan-wellness",
+      "name": "Yäan Wellness Energy Spa",
+      "focus": "wellness",
+      "town": "Tulum",
+      "state": "Quintana Roo",
+      "langs": [
+        "es",
+        "en"
+      ],
+      "band": 2,
+      "url": "https://www.yaanwellness.com",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "Healing spa and wellness space on the Tulum beach road.",
+      "tagline_es": "Spa de sanación y bienestar en el camino costero de Tulum.",
+      "desc_en": "A healing spa and wellness space on the beach road in Tulum. Yäan offers treatments in a setting of pools and wooden decks, from massage and temazcal to energy work, plus multi day programs for guests staying in town. It works as a quiet anchor to a Tulum stay away from the party strip.",
+      "desc_es": "Spa y espacio de sanación en el camino costero de Tulum. Yäan ofrece tratamientos entre albercas y terrazas de madera, desde masaje y temazcal hasta terapias energéticas, además de programas de varios días para quienes se hospedan en el pueblo. Funciona como ancla tranquila de una estancia en Tulum, lejos de la zona de fiesta.",
+      "price_unit": "day",
+      "contact": "https://www.yaanwellness.com"
+    },
+    {
+      "slug": "holistika",
+      "name": "Holistika Tulum",
+      "focus": "wellness",
+      "town": "Tulum",
+      "state": "Quintana Roo",
+      "langs": [
+        "es",
+        "en"
+      ],
+      "band": 2,
+      "url": "https://www.holistikatulum.com",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "Jungle wellness community with temazcal and vegetarian kitchen in Tulum.",
+      "tagline_es": "Comunidad de bienestar en la selva con temazcal y cocina vegetariana en Tulum.",
+      "desc_en": "A wellness community and hotel set back from the beach road in the Tulum jungle. Holistika has a yoga shala, temazcal, vegetarian kitchen, and art installations across the grounds, and it runs classes, therapies, and retreats that guests and day visitors can join. It keeps its own quiet inside a busy town.",
+      "desc_es": "Comunidad y hotel de bienestar entre la selva, a un lado del camino costero de Tulum. Holistika tiene shala de yoga, temazcal, cocina vegetariana e instalaciones de arte en el terreno, y ofrece clases, terapias y retiros para huéspedes y visitantes del día. Guarda su propia calma dentro de un pueblo ocupado.",
+      "contact": "https://www.holistikatulum.com"
+    },
+    {
+      "slug": "tepoztlan",
+      "name": "Tepoztlán",
+      "focus": "town",
+      "town": "Tepoztlán",
+      "state": "Morelos",
+      "langs": [
+        "es",
+        "en"
+      ],
+      "band": 1,
+      "url": "https://tepoztlan.gob.mx",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "Pueblo Mágico under the Tepozteco cliffs, a classic escape from Mexico City.",
+      "tagline_es": "Pueblo Mágico bajo el Tepozteco, la escapada clásica desde la Ciudad de México.",
+      "desc_en": "A market town below the Tepozteco cliffs about an hour south of Mexico City. Tepoztlán has drawn seekers, artists, and healers for a century, with weekend markets, temazcales, yoga spaces, and hikes to the pyramid on the cliff. It is a Pueblo Mágico and a classic first stop out of the capital.",
+      "desc_es": "Pueblo de mercado bajo los cerros del Tepozteco, a una hora al sur de la Ciudad de México. Tepoztlán atrae a buscadores, artistas y sanadores desde hace un siglo, con mercados de fin de semana, temazcales, espacios de yoga y caminatas a la pirámide del cerro. Es Pueblo Mágico y la primera parada clásica desde la capital."
+    },
+    {
+      "slug": "teotitlan-del-valle",
+      "name": "Teotitlán del Valle",
+      "focus": "craft",
+      "town": "Teotitlán del Valle",
+      "state": "Oaxaca",
+      "langs": [
+        "es"
+      ],
+      "band": 1,
+      "url": "https://es.wikipedia.org/wiki/Teotitl%C3%A1n_del_Valle",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "Zapotec weaving village famous for naturally dyed wool rugs.",
+      "tagline_es": "Pueblo zapoteco de tejedores, famoso por sus tapices de tintes naturales.",
+      "desc_en": "A Zapotec weaving village in the Tlacolula valley east of Oaxaca city. Teotitlán del Valle is known for wool rugs dyed with natural pigments, family workshops that welcome visitors, and a slow calendar of saints days and markets. Several families take guests for weaving courses by arrangement.",
+      "desc_es": "Pueblo zapoteco de tejedores en el valle de Tlacolula, al este de la ciudad de Oaxaca. Teotitlán del Valle es conocido por sus tapices de lana teñidos con pigmentos naturales, talleres familiares que reciben visitantes y un calendario lento de fiestas y mercados. Varias familias reciben huéspedes para cursos de telar con acuerdo previo."
+    },
+    {
+      "slug": "san-bartolo-coyotepec",
+      "name": "San Bartolo Coyotepec",
+      "focus": "craft",
+      "town": "San Bartolo Coyotepec",
+      "state": "Oaxaca",
+      "langs": [
+        "es"
+      ],
+      "band": 1,
+      "url": "https://es.wikipedia.org/wiki/San_Bartolo_Coyotepec",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "Home of Oaxaca black pottery, worked by hand in family talleres.",
+      "tagline_es": "Casa del barro negro de Oaxaca, trabajado a mano en talleres familiares.",
+      "desc_en": "The home of barro negro, the black pottery of Oaxaca, just south of the city. San Bartolo Coyotepec works clay in family talleres where the burnishing technique passed down through generations is still done by hand. Visitors can watch the kilns, try the wheel, and buy direct from the makers.",
+      "desc_es": "Casa del barro negro de Oaxaca, justo al sur de la ciudad. En San Bartolo Coyotepec se trabaja la arcilla en talleres familiares, donde la técnica de bruñido heredada por generaciones sigue haciéndose a mano. Los visitantes pueden ver los hornos, probar el torno y comprar directo de las y los artesanos."
+    },
+    {
+      "slug": "mata-ortiz",
+      "name": "Mata Ortiz",
+      "focus": "craft",
+      "town": "Mata Ortiz",
+      "state": "Chihuahua",
+      "langs": [
+        "es"
+      ],
+      "band": 1,
+      "url": "https://www.visitachihuahua.mx/mata-ortiz",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "Northern village where hand built pottery supports dozens of family studios.",
+      "tagline_es": "Pueblo del norte donde la cerámica modelada a mano sostiene decenas de talleres familiares.",
+      "desc_en": "A village on the edge of the Sierra Madre in northern Chihuahua, known worldwide for its hand built pottery. Mata Ortiz ceramics grew from the work of Juan Quezada and now supports dozens of family studios. The pace is slow, the desert is close, and artists sell from their homes.",
+      "desc_es": "Pueblo al pie de la Sierra Madre en el norte de Chihuahua, conocido en el mundo entero por su cerámica modelada a mano. La alfarería de Mata Ortiz nació del trabajo de Juan Quezada y hoy sostiene decenas de talleres familiares. El ritmo es lento, el desierto está cerca y los artistas venden desde su casa."
+    },
+    {
+      "slug": "real-de-catorce",
+      "name": "Real de Catorce",
+      "focus": "town",
+      "town": "Real de Catorce",
+      "state": "San Luis Potosí",
+      "langs": [
+        "es"
+      ],
+      "band": 1,
+      "url": "https://es.wikipedia.org/wiki/Real_de_Catorce",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "High desert silver town reached through a tunnel, made for going offline.",
+      "tagline_es": "Pueblo minero de altura al que se llega por túnel, hecho para desconectarse.",
+      "desc_en": "A former silver town high in the mountains of San Luis Potosí, reached through a long tunnel. Real de Catorce keeps cobblestone streets, ruins, and a Huichol pilgrimage route to Wirikuta nearby. Cold nights, empty mornings, and the desert beyond make it a place people go to be offline on purpose.",
+      "desc_es": "Antiguo pueblo plateado en lo alto de las montañas de San Luis Potosí, al que se entra por un túnel largo. Real de Catorce conserva calles empedradas, ruinas y la ruta de peregrinación huichol hacia Wirikuta. Noches frías, mañanas vacías y el desierto alrededor lo hacen un lugar para desconectarse a propósito."
+    },
+    {
+      "slug": "bacalar",
+      "name": "Bacalar",
+      "focus": "town",
+      "town": "Bacalar",
+      "state": "Quintana Roo",
+      "langs": [
+        "es",
+        "en"
+      ],
+      "band": 2,
+      "url": "https://es.wikipedia.org/wiki/Bacalar",
+      "status": "web",
+      "checked": "2026-11-07",
+      "tagline_en": "Small town on the lagoon of seven colors, far from the crowds.",
+      "tagline_es": "Pueblo pequeño en la laguna de los siete colores, lejos de las multitudes.",
+      "desc_en": "A small town on the lagoon of seven colors in southern Quintana Roo, far from the Riviera Maya crowds. Bacalar life moves between the water, the fort, and the town square, with stilted docks, morning swims, and dark skies at night. A magnet for slow travelers and kitesurfers in season.",
+      "desc_es": "Pueblo pequeño en la laguna de los siete colores, en el sur de Quintana Roo, lejos de las multitudes del Riviera Maya. La vida en Bacalar va entre el agua, el fuerte y el zócalo, con muelles de pilotes, nadadas por la mañana y cielos oscuros de noche. Es imán de viajeros lentos y velistas en temporada."
+    }
+  ]
+}
