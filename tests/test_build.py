@@ -273,6 +273,26 @@ class PageQuality(BuildHarness):
             html = (self.out / "places" / f"{hostile['places'][0]['slug']}.html").read_text(encoding="utf-8")
             self.assertNotIn(f'href="{bad}"', html)
 
+    def test_hostile_update_date_rejected_from_markup(self):
+        """Regression: meta.updated flowed into the footer unescaped."""
+        import copy
+        import tempfile
+
+        hostile = copy.deepcopy(self.data)
+        hostile["meta"]["updated"] = "</p><script>alert(1)</script><p>"
+        with tempfile.TemporaryDirectory() as td:
+            hostile_file = Path(td) / "hostile.json"
+            hostile_file.write_text(json.dumps(hostile), encoding="utf-8")
+            original = build.DATA_FILE
+            build.DATA_FILE = hostile_file
+            try:
+                build.build_into(self.out)
+            finally:
+                build.DATA_FILE = original
+            html = (self.out / "index.html").read_text(encoding="utf-8")
+            self.assertEqual(html.count("<script"), 1, "script injected via meta.updated")
+            self.assertIn("&lt;/p&gt;", html)
+
     def test_hero_is_citable_length(self):
         for text in (build.HERO_EN, build.HERO_ES):
             n = words(text)

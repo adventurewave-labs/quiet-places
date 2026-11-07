@@ -242,7 +242,7 @@ def layout(lang, title, desc, canonical, hreflang_for, body_jsonld, content, upd
 {content}
 </main>
 <footer>
-  <p>{status_note}</p>
+  <p>{escape(status_note)}</p>
   <p>{t('A project of the log off economy portfolio.', 'Un proyecto del portafolio log off economy.')} <a href="{ESTATE_CONTACT}" rel="noopener">{t('Contact the estate', 'Contactar al estate')}</a></p>
 </footer>
 </body>
