@@ -383,6 +383,42 @@ class Guides(BuildHarness):
         html_es = (self.out / "es" / "index.html").read_text(encoding="utf-8")
         self.assertIn('href="/es/guias/index.html"', html_es)
 
+    def test_duplicate_relocation_slug_rejected(self):
+        import copy
+        import tempfile
+
+        raw = json.loads((ROOT / "data" / "relocation.json").read_text(encoding="utf-8"))
+        hostile = copy.deepcopy(raw)
+        hostile["towns"][1]["slug"] = hostile["towns"][0]["slug"]
+        with tempfile.TemporaryDirectory() as td:
+            f = Path(td) / "relocation.json"
+            f.write_text(json.dumps(hostile), encoding="utf-8")
+            original = guides.RELOCATION_FILE
+            guides.RELOCATION_FILE = f
+            try:
+                with self.assertRaises(SystemExit):
+                    guides.load_relocation()
+            finally:
+                guides.RELOCATION_FILE = original
+
+    def test_unsafe_relocation_source_scheme_rejected(self):
+        import copy
+        import tempfile
+
+        raw = json.loads((ROOT / "data" / "relocation.json").read_text(encoding="utf-8"))
+        hostile = copy.deepcopy(raw)
+        hostile["sources"][0]["url"] = "javascript:alert(1)"
+        with tempfile.TemporaryDirectory() as td:
+            f = Path(td) / "relocation.json"
+            f.write_text(json.dumps(hostile), encoding="utf-8")
+            original = guides.RELOCATION_FILE
+            guides.RELOCATION_FILE = f
+            try:
+                with self.assertRaises(SystemExit):
+                    guides.load_relocation()
+            finally:
+                guides.RELOCATION_FILE = original
+
     def test_reserved_relocation_slug_rejected(self):
         """A town slug 'index' would overwrite the guides index page. (A slug
         equal to a directory entry is fine: guides and places live in

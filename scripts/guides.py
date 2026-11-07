@@ -73,10 +73,17 @@ def load_relocation():
     raw = json.loads(RELOCATION_FILE.read_text(encoding="utf-8"))
     if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", raw["meta"]["updated"]):
         raise SystemExit(f"relocation meta.updated {raw['meta']['updated']!r} is not an ISO date")
+    slugs = set()
     for town in raw["towns"]:
         for field in ("slug", "place_slug"):
             if not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,63}", town[field]):
                 raise SystemExit(f"relocation {field} {town[field]!r} is not filename safe")
+        if town["slug"] in slugs:
+            raise SystemExit(f"duplicate relocation slug {town['slug']!r}")
+        slugs.add(town["slug"])
+    for src in raw["sources"]:
+        if not re.fullmatch(r"https?://\S+", src["url"], re.IGNORECASE):
+            raise SystemExit(f"unsafe source url for {src['key']!r}: {src['url']!r}")
     strings = [("meta.updated", raw["meta"]["updated"])]
     for src in raw["sources"]:
         strings.append((f"source.{src['key']}", src["name_en"]))
