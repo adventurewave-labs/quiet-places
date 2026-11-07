@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "updated": "2026-11-07",
+    "method_en": "Guides describe national processes from official sources and each town's practical layer from a public web pass. Cost figures wait for a Market Watch sweep; we show what we know and nothing invented.",
+    "method_es": "Las guías describen los procesos nacionales con fuentes oficiales y la capa práctica de cada pueblo con una pasada de fuentes públicas. Las cifras de costo esperan un barrido Market Watch; mostramos lo que sabemos y nada inventado."
+  },
+  "sources": [
+    {
+      "key": "inm",
+      "name_en": "Instituto Nacional de Migración (INM)",
+      "name_es": "Instituto Nacional de Migración (INM)",
+      "url": "https://www.gob.mx/inm"
+    },
+    {
+      "key": "imss",
+      "name_en": "IMSS, the public health insurer",
+      "name_es": "IMSS, el instituto público de salud",
+      "url": "https://www.imss.gob.mx"
+    },
+    {
+      "key": "ift",
+      "name_en": "Instituto Federal de Telecomunicaciones (IFT)",
+      "name_es": "Instituto Federal de Telecomunicaciones (IFT)",
+      "url": "https://www.ift.org.mx"
+    },
+    {
+      "key": "inegi",
+      "name_en": "INEGI national statistics",
+      "name_es": "INEGI, estadísticas nacionales",
+      "url": "https://www.inegi.org.mx"
+    }
+  ],
+  "towns": [
+    {
+      "slug": "tepoztlan",
+      "place_slug": "tepoztlan",
+      "name": "Tepoztlán",
+      "state": "Morelos",
+      "lead_en": "Tepoztlán sits under its cliffs about an hour south of Mexico City, which makes it the easiest quiet town to reach from the capital. Moving here means handling paperwork in Cuernavaca, budgeting for a weekend tourist rhythm, and choosing between the town center and the outlying colonias.",
+      "lead_es": "Tepoztlán descansa bajo sus cerros a una hora al sur de la Ciudad de México, lo que lo hace el pueblo tranquilo más fácil de alcanzar desde la capital. Mudarse aquí significa hacer trámites en Cuernavaca, presupuestar el ritmo turístico del fin de semana y elegir entre el centro y las colonias periféricas.",
+      "banking_note_en": "ATMs sit around the centro and weekend markets are cash first. Full branch services live in Cuernavaca; most residents pair a national bank account with a fintech app.",
+      "banking_note_es": "Los cajeros están alrededor del centro y los mercados de fin de semana funcionan primero con efectivo. Los servicios completos de banca están en Cuernavaca; la mayoría combina una cuenta de banco nacional con una app fintech.",
+      "internet_note_en": "Center streets have fixed fiber offers from the national carriers; coverage thins in the upper colonias toward the cliffs. Test with your own devices before signing a year.",
+      "internet_note_es": "Las calles del centro tienen ofertas de fibra fija de las operadoras nacionales; la cobertura se adelgaza en las colonias altas hacia los cerros. Prueba con tus propios equipos antes de firmar un año.",
+      "cost_note_en": "Weekend tourism lifts restaurant and lodging prices above the Morelos baseline. Numbers land here after the first sweep pass measures rents and monthly baskets.",
+      "cost_note_es": "El turismo de fin de semana eleva precios de restaurantes y hospedaje por encima de la línea base de Morelos. Las cifras llegan cuando la primera pasada de barrido mida rentas y canastas mensuales.",
+      "visa_note_en": "State migration services run from the INM delegation in Cuernavaca, about 40 minutes down the highway. Do the residency card exchange there; go early, mornings clear faster.",
+      "visa_note_es": "Los servicios migratorios del estado salen de la delegación del INM en Cuernavaca, a unos 40 minutos por la carretera. Haz ahí el canje por la tarjeta de residencia; ve temprano, las mañanas avanzan más rápido.",
+      "healthcare_note_en": "Tepoztlán has a health center and private consultorios for everyday needs. Full service hospitals, surgery, and specialists mean the trip to Cuernavaca or Cuautla, both under an hour.",
+      "healthcare_note_es": "Tepoztlán tiene un centro de salud y consultorios privados para el día a día. Hospitales completos, cirugía y especialistas significan viajar a Cuernavaca o Cuautla, ambas a menos de una hora."
+    },
+    {
+      "slug": "bacalar",
+      "place_slug": "bacalar",
+      "name": "Bacalar",
+      "state": "Quintana Roo",
+      "lead_en": "Bacalar is a small lagoon town in southern Quintana Roo, far from the Riviera Maya's pace. Moving here trades big city services for the water at your door; Chetumal, the state capital, covers the paperwork, the hospitals, and the airport about 40 minutes south.",
+      "lead_es": "Bacalar es un pueblo pequeño de laguna en el sur de Quintana Roo, lejos del ritmo del Riviera Maya. Mudarse aquí cambia servicios de gran ciudad por el agua a tu puerta; Chetumal, la capital del estado, cubre trámites, hospitales y aeropuerto a unos 40 minutos al sur.",
+      "banking_note_en": "ATMs work in town and run dry on long weekends. Branches concentrate in Chetumal; SPEI transfers and fintech apps cover most daily movement in the village.",
+      "banking_note_es": "Los cajeros funcionan en el pueblo y se quedan sin billetes en los fines largos. Las sucursales se concentran en Chetumal; las transferencias SPEI y las apps fintech cubren la mayoría del movimiento diario.",
+      "internet_note_en": "Fixed coverage is decent along the costera and in the village core; lagoon edge properties often lean on mobile or satellite. Ask the exact address, not the town, when you ask a host.",
+      "internet_note_es": "La cobertura fija es decente sobre la costera y en el corazón del pueblo; las propiedades en la orilla de la laguna suelen depender de móvil o satélite. Pregunta por la dirección exacta, no por el pueblo.",
+      "cost_note_en": "Season swings are real: high season lifts everything from rents to boat rides. The sweep pass will publish a real monthly basket; until then, ask hosts for current ranges.",
+      "cost_note_es": "Los cambios de temporada se sienten: la temporada alta eleva todo, de rentas a paseos en lancha. El barrido publicará una canasta mensual real; hasta entonces, pide rangos actuales a los anfitriones.",
+      "visa_note_en": "The INM delegation for the state sits in Chetumal. Book the residency exchange there and keep a morning free; boat access to some lagoon properties means planning appointments from the highway side.",
+      "visa_note_es": "La delegación del INM para el estado está en Chetumal. Agenda ahí el trámite de residencia y reserva una mañana; el acceso en lancha de algunas propiedades de la laguna obliga a planear las citas desde la carretera.",
+      "healthcare_note_en": "Bacalar has a health center and private clinics for common needs. The general hospital and specialists are in Chetumal; serious cases sometimes continue to Merida or Cancun.",
+      "healthcare_note_es": "Bacalar cuenta con centro de salud y clínicas privadas para necesidades comunes. El hospital general y los especialistas están en Chetumal; los casos graves a veces se trasladan a Mérida o Cancún."
+    },
+    {
+      "slug": "real-de-catorce",
+      "place_slug": "real-de-catorce",
+      "name": "Real de Catorce",
+      "state": "San Luis Potosí",
+      "lead_en": "Real de Catorce is a high desert former silver town reached through a tunnel, with Matehuala as its service city on the plain below. Moving here is a commitment: cold nights, cobblestones, one road in, and services that live 30 to 45 minutes downslope.",
+      "lead_es": "Real de Catorce es un antiguo pueblo plateado del altiplano al que se entra por un túnel, con Matehuala como ciudad de servicios en el llano. Mudarse aquí es un compromiso: noches frías, empedrado, una sola carretera de acceso y servicios a 30 o 45 minutos cuesta abajo.",
+      "banking_note_en": "Cash rules here: ATMs are few and can run empty on busy weekends and festival dates. Bank branches are in Matehuala, so keep a buffer of pesos on hand.",
+      "banking_note_es": "Aquí manda el efectivo: los cajeros son pocos y pueden quedarse vacíos en fines de semana ocupados y fechas de fiesta. Las sucursales bancarias están en Matehuala, así que guarda un colchón de pesos.",
+      "internet_note_en": "Connectivity is basic and variable by street and weather; most long stayers pair a fixed line with a mobile hotspot. Confirm with a trial week before committing.",
+      "internet_note_es": "La conectividad es básica y variable por calle y por clima; quienes se quedan largo combinan línea fija con punto de acceso móvil. Confirma con una semana de prueba antes de comprometerte.",
+      "cost_note_en": "Village prices for food are modest; anything that must be hauled up from the plain costs more. A real monthly basket lands after the first sweep.",
+      "cost_note_es": "Los precios de comida en el pueblo son moderados; todo lo que deba subir desde el llano cuesta más. La canasta mensual real llega tras el primer barrido.",
+      "visa_note_en": "State migration services sit in the capital, San Luis Potosí, about two and a half hours away; Matehuala handles everyday federal errands but not the residency card exchange. Plan one trip per step.",
+      "visa_note_es": "Los servicios migratorios del estado están en la capital, San Luis Potosí, a unas dos horas y media; Matehuala resuelve trámites federales cotidianos pero no el canje de la tarjeta de residencia. Planea un viaje por cada paso.",
+      "healthcare_note_en": "The town keeps a small health center. Real emergencies mean the drive down to Matehuala's hospitals, and the tunnel road deserves respect at night and in rain.",
+      "healthcare_note_es": "El pueblo mantiene un centro de salud pequeño. Las emergencias reales implican bajar a los hospitales de Matehuala, y la carretera del túnel pide respeto de noche y con lluvia."
+    },
+    {
+      "slug": "teotitlan-del-valle",
+      "place_slug": "teotitlan-del-valle",
+      "name": "Teotitlán del Valle",
+      "state": "Oaxaca",
+      "lead_en": "Teotitlán del Valle is a Zapotec weaving village half an hour from Oaxaca city, which puts full city services within a short colectivo ride while the village keeps its own rhythm of looms, markets, and saints days. Moving here means village rent below city rates, a craft economy around you, and paperwork and hospitals a short ride away.",
+      "lead_es": "Teotitlán del Valle es un pueblo zapoteco de tejedores a media hora de la ciudad de Oaxaca, que deja los servicios completos de la ciudad a un corto viaje en colectivo mientras el pueblo guarda su propio ritmo de telares, mercados y fiestas. Mudarse aquí significa renta de pueblo, economía artesanal alrededor y trámites y hospitales a un viaje corto.",
+      "banking_note_en": "A couple of ATMs serve the village and market days still run on cash. Full banking is in Oaxaca city and Tlacolula; transfers cover the rest.",
+      "banking_note_es": "Un par de cajeros sirven al pueblo y los días de mercado siguen moviéndose con efectivo. La banca completa está en la ciudad de Oaxaca y Tlacolula; las transferencias cubren el resto.",
+      "internet_note_en": "Valley towns carry fixed fiber on the main streets with thinner coverage up the slopes. The city's data plan is a reliable second line here.",
+      "internet_note_es": "Los pueblos del valle traen fibra fija en las calles principales, con cobertura menor en las laderas. Un plan de datos de la ciudad funciona aquí como segunda línea confiable.",
+      "cost_note_en": "Village rents run below the city's, and many households sell crafts, which colors the local economy. A measured monthly basket follows the sweep pass.",
+      "cost_note_es": "Las rentas del pueblo corren por debajo de las de la ciudad, y muchas familias venden artesanía, lo que tiñe la economía local. La canasta mensual medida llega con el barrido.",
+      "visa_note_en": "The INM delegation for Oaxaca state is in the capital, a 30 to 45 minute colectivo or taxi ride. Errands pair well with a market day in Tlacolula next door.",
+      "visa_note_es": "La delegación del INM para Oaxaca está en la capital, a 30 o 45 minutos en colectivo o taxi. Los trámites combinan bien con un día de mercado en el Tlacolula vecino.",
+      "healthcare_note_en": "The village has a health center; everyday consultorios cover the basics. Hospitals, including the civil network, are in Oaxaca city, and the highway makes the run straightforward.",
+      "healthcare_note_es": "El pueblo tiene centro de salud; los consultorios cotidianos cubren lo básico. Los hospitales, incluida la red civil, están en la ciudad de Oaxaca, y la carretera hace el trayecto sencillo."
+    },
+    {
+      "slug": "san-bartolo-coyotepec",
+      "place_slug": "san-bartolo-coyotepec",
+      "name": "San Bartolo Coyotepec",
+      "state": "Oaxaca",
+      "lead_en": "San Bartolo Coyotepec, home of Oaxaca's black pottery, lies about half an hour south of the state capital. It suits movers who want village quiet, a workshop culture, and the city's hospitals, banks, and migration office within a short drive.",
+      "lead_es": "San Bartolo Coyotepec, casa del barro negro de Oaxaca, queda a media hora al sur de la capital del estado. Conviene a quien busca calma de pueblo, cultura de talleres y los hospitales, bancos y oficina migratoria de la ciudad a un viaje corto.",
+      "banking_note_en": "ATMs stand on the main road and workshops sell cash and transfer alike. Branch banks stay in Oaxaca city; a national account plus a fintech app covers most needs.",
+      "banking_note_es": "Los cajeros están sobre la carretera y los talleres cobran igual en efectivo que por transferencia. Los bancos con sucursal quedan en la ciudad de Oaxaca; una cuenta nacional más una app fintech cubre la mayoría.",
+      "internet_note_en": "Main road fixed coverage is solid and side streets vary; the village sits low, so signal is friendlier than in the sierra towns.",
+      "internet_note_es": "La cobertura fija sobre la carretera es sólida y varía en las calles laterales; el pueblo está en el llano, así que la señal es más amable que en los pueblos de sierra.",
+      "cost_note_en": "Proximity to Oaxaca city keeps goods cheap and rents a notch above remote villages. Real figures follow the first sweep.",
+      "cost_note_es": "La cercanía a la ciudad de Oaxaca abarata bienes y deja rentas un escalón arriba de los pueblos remotos. Las cifras reales siguen al primer barrido.",
+      "visa_note_en": "Handle migration paperwork at the INM delegation in Oaxaca city, about 30 minutes north on the highway. Same day round trips are normal for residents here.",
+      "visa_note_es": "Los trámites migratorios se hacen en la delegación del INM en la ciudad de Oaxaca, a unos 30 minutos al norte por la carretera. Los viajes redondos el mismo día son normales para los residentes.",
+      "healthcare_note_en": "The town has a health center and private consultorios. Oaxaca city holds the hospitals and specialists, close enough for routine appointments without moving house.",
+      "healthcare_note_es": "El pueblo tiene centro de salud y consultorios privados. La ciudad de Oaxaca concentra hospitales y especialistas, lo bastante cerca para citas de rutina sin mudarse."
+    }
+  ]
+}

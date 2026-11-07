@@ -7,7 +7,7 @@ This repo is the scope holder for three PRDs from the log-off economy portfolio:
 | PRD | What it is | Status |
 |---|---|---|
 | [03 Quiet-places directory](prds/03-quiet-places-directory.md) | The directory itself: one canonical page per place, structured data, llms.txt, no feeds, no reviews | **In build**: 25-entry seed, bilingual site generated in this repo, deploy target Vercel |
-| [05 Relocation guides](prds/05-relocation-guides.md) | The practical layer: visas, healthcare, banking, internet, real monthly costs per town, quarterly-refreshed | Proposed, awaiting go |
+| [05 Relocation guides](prds/05-relocation-guides.md) | The practical layer: visas, healthcare, banking, internet, real monthly costs per town, quarterly-refreshed | **In build**: 5 town guides x 5 evergreen topics, bilingual; cost figures wait for sweep data and say so on the page |
 | [09 Residency match](prds/09-residency-match.md) | Two-sided placement: hubs need artists and practitioners in residence, practitioners need places. Hand-matched first | Program pages live in the directory; intake forms wire up when an intake channel is named |
 
 ## How the directory is built
@@ -16,6 +16,7 @@ This repo is the scope holder for three PRDs from the log-off economy portfolio:
 - `scripts/build.py` (python3 stdlib only) generates the static site into `site/`: EN pages at `/`, ES mirrors at `/es/`, JSON-LD structured data on every page, `llms.txt` and `llms-full.txt`, sitemap with hreflang pairs, no JS.
 - `scripts/verify.py` checks all 25 source URLs resolve; last full pass 2026-11-07: 25/25.
 - `tests/` builds into a temp dir and asserts data integrity, bilingual coverage, structured data, and the no em dash rule. CI runs build + tests on every PR.
+- PRD 05 relocation guides live at `/guides/` (EN) and `/es/guias/` (ES): one canonical page per town covering the visa path, healthcare, banking, internet, and cost of a month. National processes cite official sources (INM, IMSS, IFT, INEGI); town cost figures publish only after a sweep measures them.
 - PRD 09 residency match pages live at `/match/` (EN) and `/es/vinculacion/` (ES); the two intake forms wire up when an intake email or WhatsApp line is named.
 
 ## Deploy

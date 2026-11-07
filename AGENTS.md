@@ -8,8 +8,10 @@ The scope holder for log-off PRDs 03 (quiet-places directory), 05 (relocation gu
 
 ## Layout
 
-- `data/places.json` — the data layer. The only place entries are edited.
+- `data/places.json` — the data layer for the directory. The only place entries are edited.
+- `data/relocation.json` — per-town overlays for PRD 05 guides; national topic copy lives in `scripts/guides.py`.
 - `scripts/build.py` — generates everything under `site/` from the data. Stdlib only.
+- `scripts/guides.py` — PRD 05 relocation guide templates (five evergreen topics, EN and ES).
 - `scripts/verify.py` — checks every entry's source URL resolves. Run before promoting statuses.
 - `site/` — generated output, committed so PR diffs show the exact pages that ship.
 - `prds/` — the PRDs. Do not edit them in feature branches without mp.

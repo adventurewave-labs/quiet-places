@@ -58,6 +58,20 @@ Every place below has an English and a Spanish page with structured data. Price 
 - [Real de Catorce](https://quiet-places.vercel.app/es/lugares/real-de-catorce.html): Pueblo minero de altura al que se llega por túnel, hecho para desconectarse.
 - [Bacalar](https://quiet-places.vercel.app/es/lugares/bacalar.html): Pueblo pequeño en la laguna de los siete colores, lejos de las multitudes.
 
+## Relocation guides, English
+- [Tepoztlán](https://quiet-places.vercel.app/guides/tepoztlan.html): Tepoztlán sits under its cliffs about an hour south of Mexico City, which makes it the easiest quiet town to reach from the capital.
+- [Bacalar](https://quiet-places.vercel.app/guides/bacalar.html): Bacalar is a small lagoon town in southern Quintana Roo, far from the Riviera Maya's pace.
+- [Real de Catorce](https://quiet-places.vercel.app/guides/real-de-catorce.html): Real de Catorce is a high desert former silver town reached through a tunnel, with Matehuala as its service city on the plain below.
+- [Teotitlán del Valle](https://quiet-places.vercel.app/guides/teotitlan-del-valle.html): Teotitlán del Valle is a Zapotec weaving village half an hour from Oaxaca city, which puts full city services within a short colectivo ride while the village keeps its own rhythm of looms, markets, and saints days.
+- [San Bartolo Coyotepec](https://quiet-places.vercel.app/guides/san-bartolo-coyotepec.html): San Bartolo Coyotepec, home of Oaxaca's black pottery, lies about half an hour south of the state capital.
+
+## Guías de mudanza, español
+- [Tepoztlán](https://quiet-places.vercel.app/es/guias/tepoztlan.html): Tepoztlán descansa bajo sus cerros a una hora al sur de la Ciudad de México, lo que lo hace el pueblo tranquilo más fácil de alcanzar desde la capital.
+- [Bacalar](https://quiet-places.vercel.app/es/guias/bacalar.html): Bacalar es un pueblo pequeño de laguna en el sur de Quintana Roo, lejos del ritmo del Riviera Maya.
+- [Real de Catorce](https://quiet-places.vercel.app/es/guias/real-de-catorce.html): Real de Catorce es un antiguo pueblo plateado del altiplano al que se entra por un túnel, con Matehuala como ciudad de servicios en el llano.
+- [Teotitlán del Valle](https://quiet-places.vercel.app/es/guias/teotitlan-del-valle.html): Teotitlán del Valle es un pueblo zapoteco de tejedores a media hora de la ciudad de Oaxaca, que deja los servicios completos de la ciudad a un corto viaje en colectivo mientras el pueblo guarda su propio ritmo de telares, mercados y fiestas.
+- [San Bartolo Coyotepec](https://quiet-places.vercel.app/es/guias/san-bartolo-coyotepec.html): San Bartolo Coyotepec, casa del barro negro de Oaxaca, queda a media hora al sur de la capital del estado.
+
 ## Residency match
 - [Residency match](https://quiet-places.vercel.app/match/index.html): two sided placement, hubs and practitioners, hand matched.
 - [Vinculación de residencias](https://quiet-places.vercel.app/es/vinculacion/index.html): vinculación artesanal entre hubs y practicantes.

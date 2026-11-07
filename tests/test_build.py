@@ -15,6 +15,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 import build  # noqa: E402
+import guides  # noqa: E402
 
 REQUIRED_FIELDS = [
     "slug", "name", "focus", "town", "state", "langs", "band",
@@ -102,7 +103,8 @@ class OutputCompleteness(BuildHarness):
 
     def test_sitemap_covers_every_page(self):
         xml = (self.out / "sitemap.xml").read_text(encoding="utf-8")
-        self.assertEqual(xml.count("<loc>"), (len(self.places) + 2) * 2)
+        towns = json.loads((ROOT / "data" / "relocation.json").read_text(encoding="utf-8"))["towns"]
+        self.assertEqual(xml.count("<loc>"), (len(self.places) + 2 + len(towns) + 1) * 2)
 
     def test_llms_txt_format(self):
         text = (self.out / "llms.txt").read_text(encoding="utf-8")
@@ -111,6 +113,9 @@ class OutputCompleteness(BuildHarness):
         for p in self.places:
             self.assertIn(build.page_url(p["slug"], "en"), text)
             self.assertIn(build.page_url(p["slug"], "es"), text)
+        for town in json.loads((ROOT / "data" / "relocation.json").read_text(encoding="utf-8"))["towns"]:
+            self.assertIn(build.guide_url(town["slug"], "en"), text)
+            self.assertIn(build.guide_url(town["slug"], "es"), text)
 
 
 class PageQuality(BuildHarness):
@@ -317,3 +322,56 @@ class PageQuality(BuildHarness):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class Guides(BuildHarness):
+    def guide(self, slug, lang):
+        if lang == "en":
+            return self.out / "guides" / f"{slug}.html"
+        return self.out / "es" / "guias" / f"{slug}.html"
+
+    def towns(self):
+        return json.loads((ROOT / "data" / "relocation.json").read_text(encoding="utf-8"))["towns"]
+
+    def test_all_guide_pages_exist(self):
+        for town in self.towns():
+            for lang in ("en", "es"):
+                self.assertTrue(self.guide(town["slug"], lang).exists(), f"{town['slug']} {lang}")
+        self.assertTrue((self.out / "guides" / "index.html").exists())
+        self.assertTrue((self.out / "es" / "guias" / "index.html").exists())
+
+    def test_guide_lead_is_citable_length(self):
+        for town in self.towns():
+            for lang in ("en", "es"):
+                n = words(town[f"lead_{lang}"])
+                self.assertTrue(40 <= n <= 60, f"{town['slug']}.lead_{lang} has {n} words, want 40 to 60")
+
+    def test_guide_covers_five_topics(self):
+        for town in self.towns():
+            html = self.guide(town["slug"], "en").read_text(encoding="utf-8")
+            for topic in guides.TOPICS:
+                self.assertIn(topic["title_en"], html, f"{town['slug']} missing {topic['key']}")
+
+    def test_guide_jsonld_parses(self):
+        for town in self.towns():
+            for lang in ("en", "es"):
+                html = self.guide(town["slug"], lang).read_text(encoding="utf-8")
+                block = html.split('<script type="application/ld+json">')[1].split("</script>")[0]
+                data = json.loads(block)
+                self.assertEqual(data["@type"], "Article")
+                self.assertEqual(data["about"]["address"]["addressCountry"], "MX")
+
+    def test_guide_links_directory_page(self):
+        for town in self.towns():
+            for lang in ("en", "es"):
+                html = self.guide(town["slug"], lang).read_text(encoding="utf-8")
+                if lang == "en":
+                    self.assertIn(f'href="/places/{town["place_slug"]}.html"', html)
+                else:
+                    self.assertIn(f'href="/es/lugares/{town["place_slug"]}.html"', html)
+
+    def test_home_links_guides(self):
+        html = (self.out / "index.html").read_text(encoding="utf-8")
+        self.assertIn('href="/guides/index.html"', html)
+        html_es = (self.out / "es" / "index.html").read_text(encoding="utf-8")
+        self.assertIn('href="/es/guias/index.html"', html_es)
