@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://quiet-places.vercel.app/sitemap.xml
