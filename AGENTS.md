@@ -17,7 +17,7 @@ The scope holder for log-off PRDs 03 (quiet-places directory), 05 (relocation gu
 ## Conventions
 
 - No em dashes or en dashes in anything customer facing. The build fails on them.
-- Every place entry carries a real `source_url` (its own site) and a verification status. No scraped or unverified entries.
+- Every place entry carries a real source URL: the place's own site where one exists, otherwise a stable public source. No scraped or unverified entries.
 - Contact happens on the place's own channel. The directory never intermediates, never hosts reviews.
 - Site copy is bilingual EN and ES, including llms.txt and sitemap coverage.
 - Edit data, never output, then rebuild and commit both.

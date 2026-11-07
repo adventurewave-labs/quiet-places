@@ -7,6 +7,7 @@ output, then rebuild: python3 scripts/build.py
 """
 
 import json
+import re
 import shutil
 import sys
 from html import escape
@@ -23,16 +24,16 @@ SITE_NAME_ES = "Quiet Places"
 
 HERO_EN = (
     "Quiet Places is a bilingual directory of places to log off in Mexico: calm towns, "
-    "artist residencies, wellness hubs, and retreat houses. Every entry links to the "
-    "place's own site, carries a price band and languages spoken, and is verified from "
-    "public sources before it ships. Contact happens on the place's own channel, not through us."
+    "artist residencies, wellness hubs, and retreat houses. Every entry carries a price "
+    "band, the languages spoken, and a public source verified before it shipped. Contact "
+    "happens on the place's own channel when it has one, not through us."
 )
 HERO_ES = (
     "Quiet Places es un directorio bilingüe de lugares para desconectarse en México: "
     "pueblos tranquilos, residencias artísticas, espacios de bienestar y casas de retiro. "
-    "Cada entrada enlaza al sitio propio del lugar, indica banda de precio e idiomas, y "
-    "se verifica con fuentes públicas antes de publicarse. El contacto sucede en el canal "
-    "del propio lugar, no a través de nosotros."
+    "Cada entrada indica banda de precio, idiomas y una fuente pública verificada antes "
+    "de publicarse. El contacto sucede en el canal del propio lugar cuando lo tiene, no "
+    "a través de nosotros."
 )
 
 INTRO_EN = (
@@ -50,13 +51,13 @@ INTRO_ES = (
 
 METHODOLOGY_EN = [
     ("Who gets in", "Hubs, residencies, and towns verifiable from public sources. Free inclusion, one canonical page each. No feeds, no reviews, no rankings."),
-    ("Verification states", "web: entered and linked from the place's own public web presence, not yet confirmed on the ground. sweep: confirmed in person by a Market Watch sweep pass."),
+    ("Verification states", "web: entered from and linked to a public web source, usually the place's own site, not yet confirmed on the ground. sweep: confirmed in person by a Market Watch sweep pass."),
     ("Price bands", "Per person per night equivalent for stays, per day for programs. Band 1 under MX$1,000. Band 2 MX$1,000 to 3,000. Band 3 MX$3,000 to 7,000. Band 4 above MX$7,000. Indicative at entry, confirmed by the sweep pass."),
     ("Contact", "Contact happens on the place's own channel, linked from its page. We do not intermediate, take bookings, or host reviews."),
 ]
 METHODOLOGY_ES = [
     ("Quién entra", "Hubs, residencias y pueblos verificables con fuentes públicas. Inclusión gratuita, una página canónica por lugar. Sin feeds, sin reseñas, sin rankings."),
-    ("Estados de verificación", "web: ingresado y enlazado desde la presencia pública del propio lugar, aún sin confirmar en campo. sweep: confirmado en persona por una pasada de barrido Market Watch."),
+    ("Estados de verificación", "web: ingresado desde y enlazado a una fuente pública en la web, normalmente el sitio propio del lugar, aún sin confirmar en campo. sweep: confirmado en persona por una pasada de barrido Market Watch."),
     ("Bandas de precio", "Equivalente por persona por noche en estancias, por día en programas. Banda 1 menos de MX$1,000. Banda 2 MX$1,000 a 3,000. Banda 3 MX$3,000 a 7,000. Banda 4 más de MX$7,000. Indicativas al ingreso, confirmadas por el barrido."),
     ("Contacto", "El contacto sucede en el canal del propio lugar, enlazado desde su página. No intermediamos, no reservamos, no alojamos reseñas."),
 ]
@@ -99,7 +100,7 @@ PRICE_UNIT = {
 }
 
 STATUS_LABEL = {
-    "web": ("Verified from public web sources", "Verificado con fuentes públicas en la web"),
+    "web": ("Entered from a public web source, not yet confirmed on the ground", "Ingresado desde una fuente pública en la web, aún sin confirmar en campo"),
     "sweep": ("Confirmed on the ground by a sweep pass", "Confirmado en campo por una pasada de barrido"),
 }
 
@@ -571,6 +572,9 @@ def build_into(outdir: Path):
     slugs = [p["slug"] for p in places]
     if len(slugs) != len(set(slugs)):
         raise SystemExit("duplicate slugs in data/places.json")
+    for slug in slugs:
+        if not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,63}", slug):
+            raise SystemExit(f"slug {slug!r} is not filename safe")
     for p in places:
         if p["focus"] not in FOCUSES:
             raise SystemExit(f"unknown focus {p['focus']!r} on {p['slug']}")

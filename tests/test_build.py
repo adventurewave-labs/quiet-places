@@ -231,6 +231,27 @@ class PageQuality(BuildHarness):
             self.assertEqual(html.count("<script"), 1, "second script tag injected")
             self.assertIn("\\u003c/script\\u003e", html)  # hostile payload neutralized inside JSON
 
+    def test_unsafe_slug_rejected(self):
+        """Regression: a slug like ../../evil once escaped the output directory."""
+        import copy
+        import tempfile
+
+        hostile = copy.deepcopy(self.data)
+        hostile["places"][0]["slug"] = "../../evil"
+        before = sorted(str(x) for x in self.out.rglob("*"))
+        with tempfile.TemporaryDirectory() as td:
+            hostile_file = Path(td) / "hostile.json"
+            hostile_file.write_text(json.dumps(hostile), encoding="utf-8")
+            original = build.DATA_FILE
+            build.DATA_FILE = hostile_file
+            try:
+                with self.assertRaises(SystemExit):
+                    build.build_into(self.out)
+            finally:
+                build.DATA_FILE = original
+        self.assertEqual(before, sorted(str(x) for x in self.out.rglob("*")), "output tree changed on rejection")
+        self.assertFalse((self.out.parent / "evil.html").exists())
+
     def test_hero_is_citable_length(self):
         for text in (build.HERO_EN, build.HERO_ES):
             n = words(text)
