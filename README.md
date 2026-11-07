@@ -21,7 +21,7 @@ This repo is the scope holder for three PRDs from the log-off economy portfolio:
 
 ## Deploy
 
-Push to main is what deploys (estate pattern): `.github/workflows/deploy.yml` runs `vercel deploy --prod` on the repo (root `vercel.json` points the output at `site/`). It needs the repo secret `VERCEL_TOKEN`; until that is set, the deploy job fails with an explicit error and nothing ships. CI (`ci.yml`) builds and tests on every PR and refuses a commit whose `site/` does not match a fresh regeneration.
+Push to main is what deploys (estate pattern): `.github/workflows/deploy.yml` runs `vercel deploy --prod` on the repo (root `vercel.json` points the output at `site/`). It needs three repo secrets: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` (org and project pin the deploy target so the CLI can never land it on the wrong project). The token travels by environment variable, never argv, and the CLI version is pinned. Until the secrets are set, the job fails with an explicit error and nothing ships. CI (`ci.yml`) builds and tests on every PR and refuses a commit whose `site/` does not match a fresh regeneration.
 
 ## Why this is its own repo
 
