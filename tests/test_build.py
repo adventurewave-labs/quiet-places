@@ -378,3 +378,44 @@ class Guides(BuildHarness):
 
 if __name__ == "__main__":
     unittest.main()
+
+    def test_hostile_relocation_slug_rejected(self):
+        """Relocation slugs are filename-safe or the build refuses."""
+        import copy
+        import tempfile
+
+        raw = json.loads((ROOT / "data" / "relocation.json").read_text(encoding="utf-8"))
+        for bad_slug in ("../../evil", "Bad_Name", "a b"):
+            hostile = copy.deepcopy(raw)
+            hostile["towns"][0]["slug"] = bad_slug
+            with tempfile.TemporaryDirectory() as td:
+                f = Path(td) / "relocation.json"
+                f.write_text(json.dumps(hostile), encoding="utf-8")
+                original = guides.RELOCATION_FILE
+                guides.RELOCATION_FILE = f
+                try:
+                    with self.assertRaises(SystemExit):
+                        guides.load_relocation()
+                finally:
+                    guides.RELOCATION_FILE = original
+
+    def test_guide_cta_escapes_town_name(self):
+        """A hostile town name cannot inject markup through the CTA line."""
+        import copy
+        import tempfile
+
+        raw = json.loads((ROOT / "data" / "relocation.json").read_text(encoding="utf-8"))
+        hostile = copy.deepcopy(raw)
+        hostile["towns"][0]["name"] = '</p><script>alert(1)</script><p>'
+        with tempfile.TemporaryDirectory() as td:
+            f = Path(td) / "relocation.json"
+            f.write_text(json.dumps(hostile), encoding="utf-8")
+            original = guides.RELOCATION_FILE
+            guides.RELOCATION_FILE = f
+            try:
+                build.build_into(self.out)
+            finally:
+                guides.RELOCATION_FILE = original
+        html = (self.out / "guides" / f"{hostile['towns'][0]['slug']}.html").read_text(encoding="utf-8")
+        self.assertEqual(html.count("<script"), 1, "script injected via town name in CTA")
+        self.assertIn("&lt;/p&gt;", html)

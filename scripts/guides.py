@@ -68,7 +68,15 @@ def guard(strings):
 
 
 def load_relocation():
+    import re
+
     raw = json.loads(RELOCATION_FILE.read_text(encoding="utf-8"))
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", raw["meta"]["updated"]):
+        raise SystemExit(f"relocation meta.updated {raw['meta']['updated']!r} is not an ISO date")
+    for town in raw["towns"]:
+        for field in ("slug", "place_slug"):
+            if not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,63}", town[field]):
+                raise SystemExit(f"relocation {field} {town[field]!r} is not filename safe")
     strings = [("meta.updated", raw["meta"]["updated"])]
     for src in raw["sources"]:
         strings.append((f"source.{src['key']}", src["name_en"]))
@@ -111,9 +119,10 @@ def guide_page(town, lang, sources, updated):
         )
     sections_html = "\n".join(sections)
     place_href = f"/places/{town['place_slug']}.html" if not es else f"/es/lugares/{town['place_slug']}.html"
+    name = escape(town["name"])
     next_step = t(
-        f'Next step: the <a href="{place_href}">directory page for {town["name"]}</a> lists quiet places to stay, banded and verified, and contact happens on each place\'s own channel.',
-        f'Siguiente paso: la <a href="{place_href}">página del directorio de {town["name"]}</a> lista lugares tranquilos donde quedarse, con banda y verificación, y el contacto sucede en el canal de cada lugar.',
+        f'Next step: the <a href="{escape(place_href)}">directory page for {name}</a> lists quiet places to stay, banded and verified, and contact happens on each place\'s own channel.',
+        f'Siguiente paso: la <a href="{escape(place_href)}">página del directorio de {name}</a> lista lugares tranquilos donde quedarse, con banda y verificación, y el contacto sucede en el canal de cada lugar.',
     )
     content = f"""<nav class="crumb"><a href="{guide_path(None, lang)}">{t('Relocation guides', 'Guías de mudanza')}</a> / {escape(town['name'])}</nav>
 <article>
