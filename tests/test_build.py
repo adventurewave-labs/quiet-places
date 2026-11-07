@@ -168,6 +168,7 @@ class PageQuality(BuildHarness):
                     has_line, bool(p.get("contact")), f"{p['slug']} {lang} contact line mismatch"
                 )
                 self.assertIn(p["url"], html)  # source always visible in facts table
+                self.assertIn(f'<a href="{p["url"]}"', html)  # source is clickable, not plain text
 
     def test_removed_entries_leave_no_stale_pages(self):
         """Regression: rebuilding over an existing output once kept deleted listings."""
@@ -194,6 +195,41 @@ class PageQuality(BuildHarness):
                 "removed entry still in ES output",
             )
             self.assertEqual(len(list((self.out / "places").glob("*.html"))), len(slim["places"]))
+
+    def test_rebuild_refuses_foreign_directory(self):
+        """Regression: a nonempty dir with an index.html once passed ownership check."""
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as td:
+            foreign = Path(td) / "other-site"
+            (foreign / "assets").mkdir(parents=True)
+            (foreign / "assets" / "keep.css").write_text("body{}", encoding="utf-8")
+            (foreign / "index.html").write_text("<html>not ours</html>", encoding="utf-8")
+            with self.assertRaises(SystemExit):
+                build.build_into(foreign)
+            self.assertTrue((foreign / "index.html").exists(), "foreign index deleted")
+            self.assertTrue((foreign / "assets" / "keep.css").exists(), "foreign assets deleted")
+
+    def test_jsonld_never_breaks_out_of_script_tag(self):
+        """Regression: a hostile description could close the JSON-LD script tag."""
+        import copy
+        import tempfile
+
+        hostile = copy.deepcopy(self.data)
+        hostile["places"][0]["desc_en"] = 'Fine place </script><script>alert(1)</script> really'
+        with tempfile.TemporaryDirectory() as td:
+            hostile_file = Path(td) / "hostile.json"
+            hostile_file.write_text(json.dumps(hostile), encoding="utf-8")
+            original = build.DATA_FILE
+            build.DATA_FILE = hostile_file
+            try:
+                build.build_into(self.out)
+            finally:
+                build.DATA_FILE = original
+            html = (self.out / "places" / f"{hostile['places'][0]['slug']}.html").read_text(encoding="utf-8")
+            self.assertEqual(html.count("</script>"), 1, "script tag escaped into output")
+            self.assertEqual(html.count("<script"), 1, "second script tag injected")
+            self.assertNotIn("alert(1)", html)
 
     def test_hero_is_citable_length(self):
         for text in (build.HERO_EN, build.HERO_ES):
