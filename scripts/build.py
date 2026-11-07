@@ -7,6 +7,7 @@ output, then rebuild: python3 scripts/build.py
 """
 
 import json
+import shutil
 import sys
 from html import escape
 from pathlib import Path
@@ -329,9 +330,15 @@ def place_page(p, lang, updated):
         (t("Languages", "Idiomas"), lang_attrs(p["langs"], es)),
         (t("Price band", "Banda de precio"), band_text(p, es)),
         (t("Verification", "Verificación"), f"{status_label} ({t('checked', 'verificado')} {p['checked']})"),
+        (t("Source", "Fuente"), p["url"]),
     ]
     table = "\n".join(f"<tr><th>{escape(k)}</th><td>{escape(v)}</td></tr>" for k, v in rows)
     contact_label = t("Contact the place directly on its own channel:", "Contacta al lugar directo en su propio canal:")
+    contact_line = (
+        f'<p class="contact">{contact_label} <a href="{escape(p["contact"])}" rel="noopener">{escape(p["contact"])}</a></p>'
+        if p.get("contact")
+        else ""
+    )
     content = f"""<nav class="crumb"><a href="{home_href}">{t('Quiet Places', 'Quiet Places')}</a> / {escape(focus_label)}</nav>
 <article>
   <h1>{escape(p['name'])}</h1>
@@ -339,7 +346,7 @@ def place_page(p, lang, updated):
   <table class="facts">
   {table}
   </table>
-  <p class="contact">{contact_label} <a href="{escape(p['url'])}" rel="noopener">{escape(p['url'])}</a></p>
+  {contact_line}
   <p class="note">{t('Free listing. No booking, no feed, no reviews. Inclusion is free and one page per place is canonical.', 'Publicación gratuita. Sin reservas, sin feed, sin reseñas. La inclusión es gratuita y una página por lugar es la canónica.')}</p>
 </article>"""
     return layout(
@@ -556,6 +563,22 @@ def build_into(outdir: Path):
             raise SystemExit(f"unknown price_unit {p['price_unit']!r} on {p['slug']}")
 
     out = Path(outdir)
+    out.mkdir(parents=True, exist_ok=True)
+    # only clean a directory that is (or can become) this build's output
+    is_empty = not any(out.iterdir())
+    if not is_empty and not ((out / "index.html").exists() or (out / "places").exists()):
+        raise SystemExit(f"refusing to clean {out}: not a quiet-places build output dir")
+    # remove generated artifacts first so removed or renamed entries
+    # cannot linger from a previous build
+    for sub in ("places", "es", "match", "assets"):
+        target = out / sub
+        if target.exists():
+            shutil.rmtree(target)
+    for stale in ("index.html", "llms.txt", "llms-full.txt", "sitemap.xml", "robots.txt"):
+        target = out / stale
+        if target.exists():
+            target.unlink()
+
     (out / "places").mkdir(parents=True, exist_ok=True)
     (out / "es" / "lugares").mkdir(parents=True, exist_ok=True)
     (out / "match").mkdir(parents=True, exist_ok=True)

@@ -40,6 +40,17 @@ def classify(origin: str, final: str) -> str:
     return "FAIL"
 
 
+def parse_curl(returncode, stdout):
+    """Interpret curl -sIL -w output. A 200 only counts when curl itself
+    exited clean; a timeout or broken pipe mid-transfer is a failure even
+    if a 200 line made it to stdout."""
+    stdout = (stdout or "").strip()
+    code, _, final = stdout.partition(" ")
+    if returncode == 0 and code == "200":
+        return 200, final.strip() or None
+    return None, stdout or f"curl exit {returncode}"
+
+
 def check(url):
     attempts = []
     for method in ("HEAD", "GET"):
@@ -65,14 +76,14 @@ def check(url):
         attempts.append("certifi not installed")
     # last resort: curl, which uses the OS trust store
     try:
-        out = subprocess.run(
+        proc = subprocess.run(
             ["curl", "-sIL", "-o", "/dev/null", "-w", "%{http_code} %{url_effective}", "--max-time", str(TIMEOUT), url],
             capture_output=True, text=True, timeout=TIMEOUT + 5,
-        ).stdout.strip()
-        code, _, final = out.partition(" ")
-        if code.isdigit() and int(code) == 200:
-            return 200, final or url
-        attempts.append(f"curl: {out}")
+        )
+        result, detail = parse_curl(proc.returncode, proc.stdout)
+        if result == 200:
+            return result, detail or url
+        attempts.append(f"curl: {detail}")
     except Exception as e:  # noqa: BLE001
         attempts.append(f"curl: {e}")
     return None, attempts[-1] if attempts else "unknown"

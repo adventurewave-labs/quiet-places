@@ -158,6 +158,43 @@ class PageQuality(BuildHarness):
             self.assertIn(build.PRICE_UNIT["night"][lang], night_html)
             self.assertNotIn(build.PRICE_UNIT["night"][lang], day_html)
 
+    def test_contact_line_renders_only_with_channel(self):
+        """Regression: encyclopedia source links were once labeled as contact channels."""
+        for p in self.places:
+            for lang in ("en", "es"):
+                html = self.page(p["slug"], lang).read_text(encoding="utf-8")
+                has_line = 'class="contact"' in html
+                self.assertEqual(
+                    has_line, bool(p.get("contact")), f"{p['slug']} {lang} contact line mismatch"
+                )
+                self.assertIn(p["url"], html)  # source always visible in facts table
+
+    def test_removed_entries_leave_no_stale_pages(self):
+        """Regression: rebuilding over an existing output once kept deleted listings."""
+        import copy
+        import tempfile
+
+        slim = copy.deepcopy(self.data)
+        removed = slim["places"].pop()
+        with tempfile.TemporaryDirectory() as td:
+            slim_file = Path(td) / "slim.json"
+            slim_file.write_text(json.dumps(slim), encoding="utf-8")
+            original = build.DATA_FILE
+            build.DATA_FILE = slim_file
+            try:
+                build.build_into(self.out)  # rebuild over the full output
+            finally:
+                build.DATA_FILE = original
+            self.assertFalse(
+                (self.out / "places" / f"{removed['slug']}.html").exists(),
+                "removed entry still in output",
+            )
+            self.assertFalse(
+                (self.out / "es" / "lugares" / f"{removed['slug']}.html").exists(),
+                "removed entry still in ES output",
+            )
+            self.assertEqual(len(list((self.out / "places").glob("*.html"))), len(slim["places"]))
+
     def test_hero_is_citable_length(self):
         for text in (build.HERO_EN, build.HERO_ES):
             n = words(text)

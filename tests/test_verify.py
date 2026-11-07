@@ -31,5 +31,27 @@ class Classify(unittest.TestCase):
         self.assertEqual(verify.classify("https://A.com", "https://a.com/"), "PASS")
 
 
+class ParseCurl(unittest.TestCase):
+    def test_clean_200_passes(self):
+        code, final = verify.parse_curl(0, "200 https://a.com/\n")
+        self.assertEqual(code, 200)
+        self.assertEqual(final, "https://a.com/")
+
+    def test_nonzero_exit_fails_even_with_200(self):
+        """Regression: curl timing out after a 200 header line once counted as PASS."""
+        code, detail = verify.parse_curl(28, "200 https://a.com/")
+        self.assertIsNone(code)
+        self.assertIn("200", detail)
+
+    def test_000_no_connection_fails(self):
+        code, detail = verify.parse_curl(6, "000 ")
+        self.assertIsNone(code)
+
+    def test_empty_stdout_nonzero_exit(self):
+        code, detail = verify.parse_curl(1, "")
+        self.assertIsNone(code)
+        self.assertIn("curl exit 1", detail)
+
+
 if __name__ == "__main__":
     unittest.main()
