@@ -155,7 +155,7 @@ def guide_page(town, lang, sources, updated):
         ),
         content,
         updated,
-        guide_path(None, "es" if not es else "en"),
+        guide_path(town["slug"], "es" if not es else "en"),
     )
 
 

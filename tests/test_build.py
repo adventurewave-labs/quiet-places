@@ -320,8 +320,7 @@ class PageQuality(BuildHarness):
             self.assertTrue(40 <= n <= 60, f"hero has {n} words")
 
 
-if __name__ == "__main__":
-    unittest.main()
+
 
 
 class Guides(BuildHarness):
@@ -375,3 +374,7 @@ class Guides(BuildHarness):
         self.assertIn('href="/guides/index.html"', html)
         html_es = (self.out / "es" / "index.html").read_text(encoding="utf-8")
         self.assertIn('href="/es/guias/index.html"', html_es)
+
+
+if __name__ == "__main__":
+    unittest.main()
