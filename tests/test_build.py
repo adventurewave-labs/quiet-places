@@ -252,6 +252,27 @@ class PageQuality(BuildHarness):
         self.assertEqual(before, sorted(str(x) for x in self.out.rglob("*")), "output tree changed on rejection")
         self.assertFalse((self.out.parent / "evil.html").exists())
 
+    def test_unsafe_contact_scheme_rejected(self):
+        """Regression: a javascript: contact URL once rendered as a clickable href."""
+        import copy
+        import tempfile
+
+        for bad in ("javascript:alert(1)", "data:text/html,hi", "ftp://x.com", "https://ok.com/ <script>"):
+            hostile = copy.deepcopy(self.data)
+            hostile["places"][0]["contact"] = bad
+            with tempfile.TemporaryDirectory() as td:
+                hostile_file = Path(td) / "hostile.json"
+                hostile_file.write_text(json.dumps(hostile), encoding="utf-8")
+                original = build.DATA_FILE
+                build.DATA_FILE = hostile_file
+                try:
+                    with self.assertRaises(SystemExit):
+                        build.build_into(self.out)
+                finally:
+                    build.DATA_FILE = original
+            html = (self.out / "places" / f"{hostile['places'][0]['slug']}.html").read_text(encoding="utf-8")
+            self.assertNotIn(f'href="{bad}"', html)
+
     def test_hero_is_citable_length(self):
         for text in (build.HERO_EN, build.HERO_ES):
             n = words(text)

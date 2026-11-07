@@ -223,7 +223,6 @@ def layout(lang, title, desc, canonical, hreflang_for, body_jsonld, content, upd
 <meta name="description" content="{escape(desc)}">
 <link rel="canonical" href="{escape(canonical)}">
 {alt_links}
-<link rel="alternate" type="application/rss+xml" title="llms" href="{BASE_URL}/llms.txt">
 <link rel="stylesheet" href="/assets/style.css">
 <script type="application/ld+json">
 {jsonld_str(body_jsonld)}
@@ -584,6 +583,10 @@ def build_into(outdir: Path):
             raise SystemExit(f"unknown band {p['band']!r} on {p['slug']}")
         if p.get("price_unit", "night") not in PRICE_UNIT:
             raise SystemExit(f"unknown price_unit {p['price_unit']!r} on {p['slug']}")
+        for field in ("url", "contact"):
+            value = p.get(field)
+            if value is not None and not re.fullmatch(r"https?://\S+", value, re.IGNORECASE):
+                raise SystemExit(f"unsafe {field} on {p['slug']}: {value!r}")
 
     out = Path(outdir)
     out.mkdir(parents=True, exist_ok=True)
