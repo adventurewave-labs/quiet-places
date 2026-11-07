@@ -375,6 +375,47 @@ class Guides(BuildHarness):
         html_es = (self.out / "es" / "index.html").read_text(encoding="utf-8")
         self.assertIn('href="/es/guias/index.html"', html_es)
 
+    def test_reserved_relocation_slug_rejected(self):
+        """A town slug 'index' would overwrite the guides index page. (A slug
+        equal to a directory entry is fine: guides and places live in
+        different output directories.)"""
+        import copy
+        import tempfile
+
+        raw = json.loads((ROOT / "data" / "relocation.json").read_text(encoding="utf-8"))
+        for bad_slug in ("index",)
+            hostile = copy.deepcopy(raw)
+            hostile["towns"][0]["slug"] = bad_slug
+            with tempfile.TemporaryDirectory() as td:
+                f = Path(td) / "relocation.json"
+                f.write_text(json.dumps(hostile), encoding="utf-8")
+                original = guides.RELOCATION_FILE
+                guides.RELOCATION_FILE = f
+                try:
+                    with self.assertRaises(SystemExit):
+                        build.build_into(self.out)
+                finally:
+                    guides.RELOCATION_FILE = original
+
+    def test_unknown_place_slug_rejected(self):
+        """A guide must link a town that exists in the directory."""
+        import copy
+        import tempfile
+
+        raw = json.loads((ROOT / "data" / "relocation.json").read_text(encoding="utf-8"))
+        hostile = copy.deepcopy(raw)
+        hostile["towns"][0]["place_slug"] = "no-such-place"
+        with tempfile.TemporaryDirectory() as td:
+            f = Path(td) / "relocation.json"
+            f.write_text(json.dumps(hostile), encoding="utf-8")
+            original = guides.RELOCATION_FILE
+            guides.RELOCATION_FILE = f
+            try:
+                with self.assertRaises(SystemExit):
+                    build.build_into(self.out)
+            finally:
+                guides.RELOCATION_FILE = original
+
     def test_hostile_relocation_slug_rejected(self):
         """Relocation slugs are filename-safe or the build refuses."""
         import copy

@@ -667,6 +667,14 @@ def build_into(outdir: Path):
 
     relocation = guides_mod.load_relocation()
     towns = relocation["towns"]
+    place_slugs = {p["slug"] for p in places}
+    for town in towns:
+        if town["slug"] == "index":  # would overwrite the guides index page
+            raise SystemExit(f"relocation slug {town['slug']!r} is reserved")
+        if town["place_slug"] not in place_slugs:
+            raise SystemExit(
+                f"relocation place_slug {town['place_slug']!r} has no directory entry"
+            )
     (out / "guides").mkdir(parents=True, exist_ok=True)
     (out / "es" / "guias").mkdir(parents=True, exist_ok=True)
     (out / "guides" / "index.html").write_text(
