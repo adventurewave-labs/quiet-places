@@ -80,10 +80,21 @@ LANG_NAMES = {"es": "Spanish", "en": "English"}
 LANG_NAMES_ES = {"es": "español", "en": "inglés"}
 
 BAND_RANGE = {
-    1: ("under MX$1,000 per person per night", "menos de MX$1,000 por persona por noche"),
-    2: ("MX$1,000 to 3,000 per person per night", "MX$1,000 a 3,000 por persona por noche"),
-    3: ("MX$3,000 to 7,000 per person per night", "MX$3,000 a 7,000 por persona por noche"),
-    4: ("above MX$7,000 per person per night", "más de MX$7,000 por persona por noche"),
+    1: ("under MX$1,000", "menos de MX$1,000"),
+    2: ("MX$1,000 to 3,000", "MX$1,000 a 3,000"),
+    3: ("MX$3,000 to 7,000", "MX$3,000 a 7,000"),
+    4: ("above MX$7,000", "más de MX$7,000"),
+}
+
+PRICE_UNIT = {
+    "night": {
+        "en": "per person per night",
+        "es": "por persona por noche",
+    },
+    "day": {
+        "en": "per person per day for programs and treatments",
+        "es": "por persona por día en programas y tratamientos",
+    },
 }
 
 STATUS_LABEL = {
@@ -137,9 +148,10 @@ def lang_attrs(langs, es=False):
     return ", ".join(names[l] for l in langs)
 
 
-def band_text(band, es=False):
-    rng = BAND_RANGE[band]
-    return rng[1] if es else rng[0]
+def band_text(p, es=False):
+    rng = BAND_RANGE[p["band"]]
+    unit = PRICE_UNIT[p.get("price_unit", "night")]
+    return f"{rng[1] if es else rng[0]} ({unit['es'] if es else unit['en']})"
 
 
 def place_jsonld(p, lang):
@@ -219,7 +231,7 @@ def layout(lang, title, desc, canonical, hreflang_for, body_jsonld, content, upd
 
 def place_card(p, lang):
     es = lang == "es"
-    href = f"../places/{p['slug']}.html" if not es else f"../lugares/{p['slug']}.html"
+    href = f"/places/{p['slug']}.html" if not es else f"/es/lugares/{p['slug']}.html"
     focus_label = FOCUSES[p["focus"]][1] if es else FOCUSES[p["focus"]][0]
     tagline = p["tagline_es"] if es else p["tagline_en"]
     band_label = "Banda" if es else "Band"
@@ -309,7 +321,7 @@ def place_page(p, lang, updated):
         (t("Focus", "Enfoque"), focus_label),
         (t("Location", "Ubicación"), f"{p['town']}, {p['state']}, México"),
         (t("Languages", "Idiomas"), lang_attrs(p["langs"], es)),
-        (t("Price band", "Banda de precio"), f"{p['band']} ({band_text(p['band'], es)})"),
+        (t("Price band", "Banda de precio"), band_text(p, es)),
         (t("Verification", "Verificación"), f"{status_label} ({t('checked', 'verificado')} {p['checked']})"),
     ]
     table = "\n".join(f"<tr><th>{escape(k)}</th><td>{escape(v)}</td></tr>" for k, v in rows)
@@ -534,6 +546,8 @@ def build_into(outdir: Path):
             raise SystemExit(f"unknown status {p['status']!r} on {p['slug']}")
         if p["band"] not in BAND_RANGE:
             raise SystemExit(f"unknown band {p['band']!r} on {p['slug']}")
+        if p.get("price_unit", "night") not in PRICE_UNIT:
+            raise SystemExit(f"unknown price_unit {p['price_unit']!r} on {p['slug']}")
 
     out = Path(outdir)
     (out / "places").mkdir(parents=True, exist_ok=True)

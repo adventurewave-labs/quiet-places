@@ -25,7 +25,8 @@
       "tagline_en": "International artist residencies in Puebla and Oaxaca, themed sessions year round.",
       "tagline_es": "Residencias artísticas internacionales en Puebla y Oaxaca, con sesiones temáticas todo el año.",
       "desc_en": "An international artist residency foundation with programs in Puebla and Oaxaca. Arquetopia runs themed sessions in ceramic, textile, printmaking, and writing, hosted in colonial buildings with dedicated studio space and staff. Programs run from two weeks upward and draw artists, scholars, and curators from many countries. Instruction is in Spanish and English.",
-      "desc_es": "Fundación internacional de residencias artísticas con programas en Puebla y Oaxaca. Arquetopia ofrece sesiones temáticas de cerámica, textil, grabado y escritura, en edificios coloniales con estudios dedicados y personal de apoyo. Los programas van de dos semanas en adelante y reúnen a artistas, académicos y curadores de muchos países. La instrucción se da en español e inglés."
+      "desc_es": "Fundación internacional de residencias artísticas con programas en Puebla y Oaxaca. Arquetopia ofrece sesiones temáticas de cerámica, textil, grabado y escritura, en edificios coloniales con estudios dedicados y personal de apoyo. Los programas van de dos semanas en adelante y reúnen a artistas, académicos y curadores de muchos países. La instrucción se da en español e inglés.",
+      "price_unit": "day"
     },
     {
       "slug": "casa-wabi",
@@ -44,7 +45,8 @@
       "tagline_en": "Coastal foundation for artist residencies by Bosco Sodi near Puerto Escondido.",
       "tagline_es": "Fundación costera de residencias artísticas de Bosco Sodi cerca de Puerto Escondido.",
       "desc_en": "A foundation on the Oaxacan coast near Puerto Escondido, founded by artist Bosco Sodi. Casa Wabi hosts residencies for artists of many disciplines on a site that includes pavilions by noted architects, a clay kiln, and an open program for local schools. Stays are by application and the calendar follows seasonal sessions.",
-      "desc_es": "Fundación en la costa de Oaxaca cerca de Puerto Escondido, creada por el artista Bosco Sodi. Casa Wabi recibe residencias para artistas de muchas disciplinas, en un terreno con pabellones de arquitectos reconocidos, un horno de barro y un programa abierto para escuelas locales. Las estancias son por convocatoria y el calendario sigue sesiones de temporada."
+      "desc_es": "Fundación en la costa de Oaxaca cerca de Puerto Escondido, creada por el artista Bosco Sodi. Casa Wabi recibe residencias para artistas de muchas disciplinas, en un terreno con pabellones de arquitectos reconocidos, un horno de barro y un programa abierto para escuelas locales. Las estancias son por convocatoria y el calendario sigue sesiones de temporada.",
+      "price_unit": "day"
     },
     {
       "slug": "360-xochi-quetzal",
@@ -63,7 +65,8 @@
       "tagline_en": "Self directed residency for artists and writers on Lake Chapala.",
       "tagline_es": "Residencia autodirigida para artistas y escritores en el lago de Chapala.",
       "desc_en": "A private residency for artists, writers, and musicians on Lake Chapala, an hour from Guadalajara. Sessions are self directed: residents get a room, workspace, and a small creative community, and bring their own project. The town has a large expat and artist population, weekly markets, and a mild climate through the year.",
-      "desc_es": "Residencia privada para artistas, escritores y músicos en el lago de Chapala, a una hora de Guadalajara. Las sesiones son autodirigidas: los residentes cuentan con habitación, espacio de trabajo y una pequeña comunidad creativa, y traen su propio proyecto. El pueblo tiene una población amplia de artistas y expatriados, mercados semanales y un clima templado todo el año."
+      "desc_es": "Residencia privada para artistas, escritores y músicos en el lago de Chapala, a una hora de Guadalajara. Las sesiones son autodirigidas: los residentes cuentan con habitación, espacio de trabajo y una pequeña comunidad creativa, y traen su propio proyecto. El pueblo tiene una población amplia de artistas y expatriados, mercados semanales y un clima templado todo el año.",
+      "price_unit": "day"
     },
     {
       "slug": "guapamacataro",
@@ -82,7 +85,8 @@
       "tagline_en": "Art and ecology residency on a rural Michoacán hacienda.",
       "tagline_es": "Residencia de arte y ecología en una hacienda rural de Michoacán.",
       "desc_en": "An art and ecology residency held on a former hacienda in rural Michoacán, between Morelia and Quiroga. Sessions gather a small cohort around themes like land, food systems, and community, with studios, a library, and fields to walk. The program is bilingual and sized for deep work rather than output.",
-      "desc_es": "Residencia de arte y ecología en una ex hacienda del rural michoacano, entre Morelia y Quiroga. Las sesiones reúnen a un grupo pequeño en torno a temas como la tierra, los alimentos y la comunidad, con estudios, una biblioteca y campos para caminar. El programa es bilingüe y pensado para trabajo profundo más que para producción."
+      "desc_es": "Residencia de arte y ecología en una ex hacienda del rural michoacano, entre Morelia y Quiroga. Las sesiones reúnen a un grupo pequeño en torno a temas como la tierra, los alimentos y la comunidad, con estudios, una biblioteca y campos para caminar. El programa es bilingüe y pensado para trabajo profundo más que para producción.",
+      "price_unit": "day"
     },
     {
       "slug": "haramara",
@@ -348,7 +352,8 @@
       "tagline_en": "Healing spa and wellness space on the Tulum beach road.",
       "tagline_es": "Spa de sanación y bienestar en el camino costero de Tulum.",
       "desc_en": "A healing spa and wellness space on the beach road in Tulum. Yäan offers treatments in a setting of pools and wooden decks, from massage and temazcal to energy work, plus multi day programs for guests staying in town. It works as a quiet anchor to a Tulum stay away from the party strip.",
-      "desc_es": "Spa y espacio de sanación en el camino costero de Tulum. Yäan ofrece tratamientos entre albercas y terrazas de madera, desde masaje y temazcal hasta terapias energéticas, además de programas de varios días para quienes se hospedan en el pueblo. Funciona como ancla tranquila de una estancia en Tulum, lejos de la zona de fiesta."
+      "desc_es": "Spa y espacio de sanación en el camino costero de Tulum. Yäan ofrece tratamientos entre albercas y terrazas de madera, desde masaje y temazcal hasta terapias energéticas, además de programas de varios días para quienes se hospedan en el pueblo. Funciona como ancla tranquila de una estancia en Tulum, lejos de la zona de fiesta.",
+      "price_unit": "day"
     },
     {
       "slug": "holistika",

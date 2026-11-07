@@ -60,8 +60,19 @@ class DataIntegrity(BuildHarness):
             self.assertIn(p["focus"], build.FOCUSES, p["slug"])
             self.assertIn(p["status"], build.STATUS_LABEL, p["slug"])
             self.assertIn(p["band"], build.BAND_RANGE, p["slug"])
+            self.assertIn(p.get("price_unit", "night"), build.PRICE_UNIT, p["slug"])
             self.assertTrue(p["url"].startswith("https://"), p["slug"])
             self.assertTrue(p["langs"], p["slug"])
+
+    def test_card_links_resolve_to_files(self):
+        """Regression: ES home cards once linked to /lugares/ instead of /es/lugares/."""
+        for lang, index_rel in (("en", "index.html"), ("es", "es/index.html")):
+            html = (self.out / index_rel).read_text(encoding="utf-8")
+            page_dir = (self.out / index_rel).parent
+            hrefs = re.findall(r'<a href="(/places/[^"]+\.html|/es/lugares/[^"]+\.html)">', html)
+            self.assertGreaterEqual(len(hrefs), len(self.places), f"{lang} home card count")
+            for href in hrefs:
+                self.assertTrue((self.out / href.lstrip("/")).exists(), f"{lang} home -> {href}")
 
     def test_description_word_counts(self):
         for p in self.places:
