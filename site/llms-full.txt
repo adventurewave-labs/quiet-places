@@ -77,4 +77,4 @@ Every place below has an English and a Spanish page with structured data. Price 
 - [Vinculación de residencias](https://quiet-places.vercel.app/es/vinculacion): vinculación artesanal entre hubs y practicantes.
 
 ## Method
-- [Methodology](https://quiet-places.vercel.app#methodology): verification states, price bands, inclusion rules.
+- [Methodology](https://quiet-places.vercel.app/#methodology): verification states, price bands, inclusion rules.

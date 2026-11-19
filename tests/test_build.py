@@ -157,6 +157,22 @@ class PageQuality(BuildHarness):
             self.assertNotIn("\u2014", str(path) + text)
             self.assertNotIn("\u2013", text)
 
+    def test_language_switcher_resolves(self):
+        """Regression: the ES home's English switch once rendered href=""; every
+        a.lang link must be nonempty and resolve to a real page via cleanUrls."""
+        for path in self.out.rglob("*.html"):
+            html = path.read_text(encoding="utf-8")
+            for href in re.findall(r'<a class="lang" href="([^"]*)" hreflang="', html):
+                self.assertNotEqual(href, "", f"{path}: empty language switch")
+                rel = href.lstrip("/")
+                candidates = (
+                    [self.out / "index.html"] if rel == ""
+                    else [self.out / f"{rel}.html", self.out / rel / "index.html"]
+                )
+                self.assertTrue(
+                    any(c.is_file() for c in candidates), f"{path} lang switch -> {href}"
+                )
+
     def test_clip_cuts_at_word_boundary(self):
         self.assertEqual(build.clip("aaa bbb ccc", 7), "aaa bbb")
         self.assertEqual(build.clip("short", 155), "short")

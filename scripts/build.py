@@ -159,8 +159,10 @@ def guide_path(slug, lang):
 
 def page_path(slug, lang, kind="place"):
     """Root-relative form of page_url, for links that must stay inside
-    whatever host renders the page (preview deploys, custom domains)."""
-    return page_url(slug, lang, kind).removeprefix(BASE_URL)
+    whatever host renders the page (preview deploys, custom domains).
+    The home page's remainder is empty, which would render href=""; use /."""
+    rest = page_url(slug, lang, kind).removeprefix(BASE_URL)
+    return rest if rest else "/"
 
 
 def lang_attrs(langs, es=False):
@@ -574,7 +576,7 @@ def llms_txt(places, towns, updated, full=False):
         f"- [Vinculación de residencias]({page_url(None, 'es', 'match')}): vinculación artesanal entre hubs y practicantes.",
         "",
         "## Method",
-        f"- [Methodology]({page_url(None, 'en', 'home')}#methodology): verification states, price bands, inclusion rules.",
+        f"- [Methodology]({BASE_URL}/#methodology): verification states, price bands, inclusion rules.",
     ]
     return "\n".join(lines) + "\n"
 
