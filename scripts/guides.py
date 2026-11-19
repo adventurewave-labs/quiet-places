@@ -125,7 +125,7 @@ def guide_page(town, lang, sources, updated):
             f"<section>\n<h2>{escape(heading)}</h2>\n<p>{escape(body)}</p>\n<p>{escape(note)}</p>\n{src_line}\n</section>"
         )
     sections_html = "\n".join(sections)
-    place_href = f"/places/{town['place_slug']}.html" if not es else f"/es/lugares/{town['place_slug']}.html"
+    place_href = f"/places/{town['place_slug']}" if not es else f"/es/lugares/{town['place_slug']}"
     name = escape(town["name"])
     next_step = t(
         f'Next step: the <a href="{escape(place_href)}">directory page for {name}</a> lists quiet places to stay, banded and verified, and contact happens on each place\'s own channel.',

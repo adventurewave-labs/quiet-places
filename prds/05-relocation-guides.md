@@ -14,7 +14,7 @@ People in the research phase, 3 to 12 months before they move.
 
 ## v1 scope
 - 10 town guides times 5 evergreen topics: visa path, healthcare, banking, internet, cost of a month from Market Watch data.
-- Published on Ancuria for domain authority, with llms.txt and structured data, EN and ES.
+- Published on the quiet-places site as the canonical home of the whole set: guides, llms.txt, sitemap, and hreflang pairs build as one unit, with structured data, EN and ES. Ancuria links to the guides for authority instead of hosting them. (Decision 2026-11-19, supersedes the earlier "published on Ancuria" wording; the directory's own domain still lands per PRD 03.)
 - Each guide ends with one clear next step: the Slow Stays page or a WhatsApp line.
 - Quarterly refresh per town, run by an automation pass with human review.
 
