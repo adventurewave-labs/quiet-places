@@ -66,14 +66,18 @@ class DataIntegrity(BuildHarness):
             self.assertTrue(p["langs"], p["slug"])
 
     def test_card_links_resolve_to_files(self):
-        """Regression: ES home cards once linked to /lugares/ instead of /es/lugares/."""
+        """Regression: ES home cards once linked to /lugares/ instead of /es/lugares/.
+
+        Cards link clean URLs; each must resolve to a real file either via
+        cleanUrls (places/slug.html) or a directory index (es/index.html)."""
         for lang, index_rel in (("en", "index.html"), ("es", "es/index.html")):
             html = (self.out / index_rel).read_text(encoding="utf-8")
-            page_dir = (self.out / index_rel).parent
-            hrefs = re.findall(r'<a href="(/places/[^"]+\.html|/es/lugares/[^"]+\.html)">', html)
+            hrefs = re.findall(r'<a href="(/places/[^"]+|/es/lugares/[^"]+)">', html)
             self.assertGreaterEqual(len(hrefs), len(self.places), f"{lang} home card count")
             for href in hrefs:
-                self.assertTrue((self.out / href.lstrip("/")).exists(), f"{lang} home -> {href}")
+                rel = href.lstrip("/")
+                candidates = (self.out / f"{rel}.html", self.out / rel / "index.html")
+                self.assertTrue(any(c.is_file() for c in candidates), f"{lang} home -> {href}")
 
     def test_description_word_counts(self):
         for p in self.places:
@@ -143,14 +147,31 @@ class PageQuality(BuildHarness):
     def test_home_links_every_place(self):
         for lang in ("en", "es"):
             html = (self.out / ("index.html" if lang == "en" else "es/index.html")).read_text(encoding="utf-8")
+            prefix = "/places/" if lang == "en" else "/es/lugares/"
             for p in self.places:
-                self.assertIn(f"{p['slug']}.html", html, f"{p['slug']} missing on {lang} home")
+                self.assertIn(f"{prefix}{p['slug']}", html, f"{p['slug']} missing on {lang} home")
 
     def test_no_em_or_en_dash_in_output_html(self):
         for path in list(self.out.rglob("*.html")) + list(self.out.rglob("*.txt")) + list(self.out.rglob("*.xml")):
             text = path.read_text(encoding="utf-8")
             self.assertNotIn("\u2014", str(path) + text)
             self.assertNotIn("\u2013", text)
+
+    def test_language_switcher_resolves(self):
+        """Regression: the ES home's English switch once rendered href=""; every
+        a.lang link must be nonempty and resolve to a real page via cleanUrls."""
+        for path in self.out.rglob("*.html"):
+            html = path.read_text(encoding="utf-8")
+            for href in re.findall(r'<a class="lang" href="([^"]*)" hreflang="', html):
+                self.assertNotEqual(href, "", f"{path}: empty language switch")
+                rel = href.lstrip("/")
+                candidates = (
+                    [self.out / "index.html"] if rel == ""
+                    else [self.out / f"{rel}.html", self.out / rel / "index.html"]
+                )
+                self.assertTrue(
+                    any(c.is_file() for c in candidates), f"{path} lang switch -> {href}"
+                )
 
     def test_clip_cuts_at_word_boundary(self):
         self.assertEqual(build.clip("aaa bbb ccc", 7), "aaa bbb")
@@ -373,15 +394,15 @@ class Guides(BuildHarness):
             for lang in ("en", "es"):
                 html = self.guide(town["slug"], lang).read_text(encoding="utf-8")
                 if lang == "en":
-                    self.assertIn(f'href="/places/{town["place_slug"]}.html"', html)
+                    self.assertIn(f'href="/places/{town["place_slug"]}"', html)
                 else:
-                    self.assertIn(f'href="/es/lugares/{town["place_slug"]}.html"', html)
+                    self.assertIn(f'href="/es/lugares/{town["place_slug"]}"', html)
 
     def test_home_links_guides(self):
         html = (self.out / "index.html").read_text(encoding="utf-8")
-        self.assertIn('href="/guides/index.html"', html)
+        self.assertIn('href="/guides"', html)
         html_es = (self.out / "es" / "index.html").read_text(encoding="utf-8")
-        self.assertIn('href="/es/guias/index.html"', html_es)
+        self.assertIn('href="/es/guias"', html_es)
 
     def test_duplicate_relocation_slug_rejected(self):
         import copy

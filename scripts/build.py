@@ -136,19 +136,21 @@ def load_data():
 
 
 def page_url(slug, lang, kind="place"):
+    """Clean URLs (no .html): vercel.json sets cleanUrls true, so /places/slug
+    serves places/slug.html and /index.html redirects to /."""
     if kind == "place":
-        return f"{BASE_URL}/places/{slug}.html" if lang == "en" else f"{BASE_URL}/es/lugares/{slug}.html"
+        return f"{BASE_URL}/places/{slug}" if lang == "en" else f"{BASE_URL}/es/lugares/{slug}"
     if kind == "home":
-        return f"{BASE_URL}/index.html" if lang == "en" else f"{BASE_URL}/es/index.html"
+        return BASE_URL if lang == "en" else f"{BASE_URL}/es"
     if kind == "match":
-        return f"{BASE_URL}/match/index.html" if lang == "en" else f"{BASE_URL}/es/vinculacion/index.html"
+        return f"{BASE_URL}/match" if lang == "en" else f"{BASE_URL}/es/vinculacion"
     raise ValueError(kind)
 
 
 def guide_url(slug, lang):
     if slug is None:
-        return f"{BASE_URL}/guides/index.html" if lang == "en" else f"{BASE_URL}/es/guias/index.html"
-    return f"{BASE_URL}/guides/{slug}.html" if lang == "en" else f"{BASE_URL}/es/guias/{slug}.html"
+        return f"{BASE_URL}/guides" if lang == "en" else f"{BASE_URL}/es/guias"
+    return f"{BASE_URL}/guides/{slug}" if lang == "en" else f"{BASE_URL}/es/guias/{slug}"
 
 
 def guide_path(slug, lang):
@@ -157,8 +159,10 @@ def guide_path(slug, lang):
 
 def page_path(slug, lang, kind="place"):
     """Root-relative form of page_url, for links that must stay inside
-    whatever host renders the page (preview deploys, custom domains)."""
-    return page_url(slug, lang, kind).removeprefix(BASE_URL)
+    whatever host renders the page (preview deploys, custom domains).
+    The home page's remainder is empty, which would render href=""; use /."""
+    rest = page_url(slug, lang, kind).removeprefix(BASE_URL)
+    return rest if rest else "/"
 
 
 def lang_attrs(langs, es=False):
@@ -221,8 +225,8 @@ def clip(text, limit=155):
 def layout(lang, title, desc, canonical, hreflang_for, body_jsonld, content, updated, lang_switch):
     """Shared page shell. hreflang_for: dict of lang -> url for this page's alternates."""
     es = lang == "es"
-    home = "/index.html" if not es else "/es/index.html"
-    match = "/match/index.html" if not es else "/es/vinculacion/index.html"
+    home = "/" if not es else "/es"
+    match = "/match" if not es else "/es/vinculacion"
     other = "en" if es else "es"
     other_url = lang_switch
     nav_label = "Español" if not es else "English"
@@ -256,7 +260,7 @@ def layout(lang, title, desc, canonical, hreflang_for, body_jsonld, content, upd
     <a href="{home}#directory">{t('Directory', 'Directorio')}</a>
     <a href="{home}#methodology">{t('Methodology', 'Metodología')}</a>
     <a href="{match}">{t('Residency match', 'Vinculación de residencias')}</a>
-    <a href="{"/guides/index.html" if not es else "/es/guias/index.html"}">{t('Relocation guides', 'Guías de mudanza')}</a>
+    <a href="{"/guides" if not es else "/es/guias"}">{t('Relocation guides', 'Guías de mudanza')}</a>
     <a class="lang" href="{other_url}" hreflang="{other}">{nav_label}</a>
   </nav>
 </header>
@@ -274,7 +278,7 @@ def layout(lang, title, desc, canonical, hreflang_for, body_jsonld, content, upd
 
 def place_card(p, lang):
     es = lang == "es"
-    href = f"/places/{p['slug']}.html" if not es else f"/es/lugares/{p['slug']}.html"
+    href = f"/places/{p['slug']}" if not es else f"/es/lugares/{p['slug']}"
     focus_label = FOCUSES[p["focus"]][1] if es else FOCUSES[p["focus"]][0]
     tagline = p["tagline_es"] if es else p["tagline_en"]
     band_label = "Banda" if es else "Band"
@@ -330,7 +334,7 @@ def home_page(places, lang, updated):
 </section>
 <section id="match-teaser">
   <h2>{t('Residency match', 'Vinculación de residencias')}</h2>
-  <p>{t('Hubs need artists and practitioners in residence. Practitioners need a place to land. We hand match both sides. ', 'Los hubs necesitan artistas y practicantes en residencia. Los practicantes necesitan donde aterrizar. Vinculamos a ambas partes a mano. ')}<a href="{'/match/index.html' if not es else '/es/vinculacion/index.html'}">{t('How it works', 'Cómo funciona')}</a></p>
+  <p>{t('Hubs need artists and practitioners in residence. Practitioners need a place to land. We hand match both sides. ', 'Los hubs necesitan artistas y practicantes en residencia. Los practicantes necesitan donde aterrizar. Vinculamos a ambas partes a mano. ')}<a href="{'/match' if not es else '/es/vinculacion'}">{t('How it works', 'Cómo funciona')}</a></p>
 </section>
 <section id="methodology">
   <h2>{t('Methodology', 'Metodología')}</h2>
@@ -356,7 +360,7 @@ def place_page(p, lang, updated):
     t = lambda s_en, s_es: s_es if es else s_en  # noqa: E731
     title = f"{p['name']} | {t('Quiet Places', 'Quiet Places')}"
     desc = p["desc_es"] if es else p["desc_en"]
-    home_href = "../index.html"
+    home_href = "/" if not es else "/es"
     focus_label = FOCUSES[p["focus"]][1] if es else FOCUSES[p["focus"]][0]
     status_label = STATUS_LABEL[p["status"]][1] if es else STATUS_LABEL[p["status"]][0]
     rows = [
@@ -572,7 +576,7 @@ def llms_txt(places, towns, updated, full=False):
         f"- [Vinculación de residencias]({page_url(None, 'es', 'match')}): vinculación artesanal entre hubs y practicantes.",
         "",
         "## Method",
-        f"- [Methodology]({page_url(None, 'en', 'home')}#methodology): verification states, price bands, inclusion rules.",
+        f"- [Methodology]({BASE_URL}/#methodology): verification states, price bands, inclusion rules.",
     ]
     return "\n".join(lines) + "\n"
 
