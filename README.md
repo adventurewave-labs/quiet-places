@@ -10,6 +10,12 @@ This repo is the scope holder for three PRDs from the log-off economy portfolio:
 | [05 Relocation guides](prds/05-relocation-guides.md) | The practical layer: visas, healthcare, banking, internet, real monthly costs per town, quarterly-refreshed | **In build**: 5 town guides x 5 evergreen topics, bilingual; cost figures wait for sweep data and say so on the page |
 | [09 Residency match](prds/09-residency-match.md) | Two-sided placement: hubs need artists and practitioners in residence, practitioners need places. Hand-matched first | Program pages live in the directory; intake forms wire up when an intake channel is named |
 
+## Release
+
+[Get the current release](https://github.com/adventurewave-labs/quiet-places/releases) for the static site archive, bilingual landing page, and release notes.
+
+![Quiet Places infographic](docs/assets/quiet-places-infographic.png)
+
 ## How the directory is built
 
 - `data/places.json` is the data layer: every place with town, focus, languages, price band, a 40 to 60 word citable answer in EN and ES, and its official site as the verifiable source.

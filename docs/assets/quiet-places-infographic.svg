@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-labelledby="title description">
+  <title id="title">Quiet Places | México</title>
+  <desc id="description">A bilingual field guide to logging off with 25 places, five relocation guides, and English and Spanish editions.</desc>
+  <defs>
+    <clipPath id="landscape"><rect x="528" y="0" width="672" height="521"/></clipPath>
+    <linearGradient id="sky" x2="0" y2="1">
+      <stop offset="0" stop-color="#293e31"/>
+      <stop offset="1" stop-color="#425940"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="#faf7f0"/>
+  <rect width="1200" height="521" fill="url(#sky)"/>
+  <g clip-path="url(#landscape)">
+    <circle cx="941" cy="177" r="78" fill="#e2c58a"/>
+    <circle cx="941" cy="177" r="98" fill="none" stroke="#e2c58a" stroke-opacity=".44"/>
+    <path d="M500 456 C641 444 695 300 793 278 C871 256 914 328 965 314 C1048 292 1096 213 1230 242 L1230 525H500Z" fill="#697e60"/>
+    <path d="M526 500 C624 471 675 391 811 356 C944 322 1031 404 1220 285 L1220 525H526Z" fill="#91a184"/>
+    <path d="M572 524 C664 477 765 420 859 417 C963 414 1050 464 1225 376 V525Z" fill="#c1bea0"/>
+    <path d="M725 524 C821 465 887 456 970 468 C1073 482 1128 444 1225 429 V525Z" fill="#e8e0d0"/>
+    <g fill="none" stroke="#faf7f0" stroke-opacity=".35" stroke-width="1.5">
+      <path d="M559 499c104-42 150-101 259-125 129-28 232 33 385-66"/>
+      <path d="M639 516c72-45 165-85 252-83 98 2 187 29 312-40"/>
+      <path d="M788 521c71-39 119-45 184-37 102 12 180-26 235-37"/>
+    </g>
+  </g>
+  <g font-family="Helvetica, Arial, sans-serif" fill="#f0eadc">
+    <text x="72" y="75" font-size="24" font-weight="700" letter-spacing="4">MÉXICO</text>
+    <text x="74" y="407" font-size="27">A field guide to logging off</text>
+    <text x="74" y="446" font-size="24" fill="#e2d9c6">Una guía para desconectar</text>
+  </g>
+  <g font-family="Georgia, Times New Roman, serif" fill="#faf7f0" font-size="114" letter-spacing="-5">
+    <text x="64" y="236">Quiet</text>
+    <text x="64" y="347">Places</text>
+  </g>
+  <g fill="none" stroke="#d8d0c0">
+    <path d="M421 574v180M785 574v180M72 791h1056" />
+  </g>
+  <g fill="#314736" font-family="Georgia, Times New Roman, serif" font-size="95" letter-spacing="-3">
+    <text x="72" y="663">25</text><text x="468" y="663">5</text><text x="832" y="663">2</text>
+  </g>
+  <g fill="#26251f" font-family="Helvetica, Arial, sans-serif">
+    <g font-size="26" font-weight="700">
+      <text x="74" y="709">Places</text><text x="470" y="709">Relocation guides</text><text x="834" y="709">Languages</text>
+    </g>
+    <g font-size="23" fill="#555b50">
+      <text x="74" y="744">Lugares</text><text x="470" y="744">Guías de reubicación</text><text x="834" y="744">Idiomas</text>
+    </g>
+    <text x="74" y="842" font-size="22" fill="#4a5d43">Quiet towns, artist residencies, wellness hubs, and retreats</text>
+    <text x="1127" y="842" text-anchor="end" font-size="21" font-weight="700" fill="#4a5d43">EN / ES</text>
+  </g>
+</svg>
