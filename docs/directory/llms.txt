@@ -1,0 +1,80 @@
+# Quiet Places
+
+> Bilingual directory of places to log off in Mexico: calm towns, artist residencies, wellness hubs, and retreat houses. One canonical page per place, verified from public sources, updated 2026-11-07. Contact happens on the place's own channel.
+
+Every place below has an English and a Spanish page with structured data. Price bands are per person per night equivalents for stays, per day for programs. Free inclusion, no feeds, no reviews.
+
+## Places, English
+- [Arquetopia](https://adventurewave-labs.github.io/quiet-places/directory/places/arquetopia/): International artist residencies in Puebla and Oaxaca, themed sessions year round.
+- [Casa Wabi](https://adventurewave-labs.github.io/quiet-places/directory/places/casa-wabi/): Coastal foundation for artist residencies by Bosco Sodi near Puerto Escondido.
+- [360 Xochi Quetzal](https://adventurewave-labs.github.io/quiet-places/directory/places/360-xochi-quetzal/): Self directed residency for artists and writers on Lake Chapala.
+- [Guapamacátaro Art and Ecology](https://adventurewave-labs.github.io/quiet-places/directory/places/guapamacataro/): Art and ecology residency on a rural Michoacán hacienda.
+- [Haramara Retreat](https://adventurewave-labs.github.io/quiet-places/directory/places/haramara/): Yoga retreat center above Sayulita beach, palapas and saltwater pool.
+- [Xinalani Retreat](https://adventurewave-labs.github.io/quiet-places/directory/places/xinalani/): Boat access beachfront yoga retreat south of Puerto Vallarta.
+- [Present Moment Retreat](https://adventurewave-labs.github.io/quiet-places/directory/places/present-moment/): Yoga and surf retreat on the quiet beach of Troncones.
+- [Amansala](https://adventurewave-labs.github.io/quiet-places/directory/places/amansala/): Eco chic Tulum hotel known for yoga and fitness retreat weeks.
+- [Mar de Jade](https://adventurewave-labs.github.io/quiet-places/directory/places/mar-de-jade/): Family run wellness retreat on Chacala beach since the 1980s.
+- [Casa Om](https://adventurewave-labs.github.io/quiet-places/directory/places/casa-om/): Retreat house with yoga shala near Puerto Morelos reef village.
+- [Prana del Mar](https://adventurewave-labs.github.io/quiet-places/directory/places/prana-del-mar/): Oceanfront yoga retreat center on the Pacific side of Los Cabos.
+- [Rancho La Puerta](https://adventurewave-labs.github.io/quiet-places/directory/places/rancho-la-puerta/): Week long fitness ranch in the Tecate valley since 1940.
+- [Playa Viva](https://adventurewave-labs.github.io/quiet-places/directory/places/playa-viva/): Regenerative resort with turtle and reef projects near Juluchuca.
+- [La Casa que Canta](https://adventurewave-labs.github.io/quiet-places/directory/places/la-casa-que-canta/): Cliffside boutique hotel above Playa La Ropa in Zihuatanejo bay.
+- [Verana](https://adventurewave-labs.github.io/quiet-places/directory/places/verana/): Boutique jungle hotel above the boat access village of Yelapa.
+- [Sanoviv Medical Institute](https://adventurewave-labs.github.io/quiet-places/directory/places/sanoviv/): Residential health institute with week long supervised programs near Rosarito.
+- [Playa Escondida](https://adventurewave-labs.github.io/quiet-places/directory/places/playa-escondida/): Adults only hideaway of bungalows in the jungle south of Sayulita.
+- [Yäan Wellness Energy Spa](https://adventurewave-labs.github.io/quiet-places/directory/places/yaan-wellness/): Healing spa and wellness space on the Tulum beach road.
+- [Holistika Tulum](https://adventurewave-labs.github.io/quiet-places/directory/places/holistika/): Jungle wellness community with temazcal and vegetarian kitchen in Tulum.
+- [Tepoztlán](https://adventurewave-labs.github.io/quiet-places/directory/places/tepoztlan/): Pueblo Mágico under the Tepozteco cliffs, a classic escape from Mexico City.
+- [Teotitlán del Valle](https://adventurewave-labs.github.io/quiet-places/directory/places/teotitlan-del-valle/): Zapotec weaving village famous for naturally dyed wool rugs.
+- [San Bartolo Coyotepec](https://adventurewave-labs.github.io/quiet-places/directory/places/san-bartolo-coyotepec/): Home of Oaxaca black pottery, worked by hand in family talleres.
+- [Mata Ortiz](https://adventurewave-labs.github.io/quiet-places/directory/places/mata-ortiz/): Northern village where hand built pottery supports dozens of family studios.
+- [Real de Catorce](https://adventurewave-labs.github.io/quiet-places/directory/places/real-de-catorce/): High desert silver town reached through a tunnel, made for going offline.
+- [Bacalar](https://adventurewave-labs.github.io/quiet-places/directory/places/bacalar/): Small town on the lagoon of seven colors, far from the crowds.
+
+## Lugares, español
+- [Arquetopia](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/arquetopia/): Residencias artísticas internacionales en Puebla y Oaxaca, con sesiones temáticas todo el año.
+- [Casa Wabi](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/casa-wabi/): Fundación costera de residencias artísticas de Bosco Sodi cerca de Puerto Escondido.
+- [360 Xochi Quetzal](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/360-xochi-quetzal/): Residencia autodirigida para artistas y escritores en el lago de Chapala.
+- [Guapamacátaro Art and Ecology](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/guapamacataro/): Residencia de arte y ecología en una hacienda rural de Michoacán.
+- [Haramara Retreat](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/haramara/): Centro de retiros de yoga sobre la playa de Sayulita, palapas y alberca.
+- [Xinalani Retreat](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/xinalani/): Retiro de yoga frente al mar al sur de Puerto Vallarta, por lancha.
+- [Present Moment Retreat](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/present-moment/): Retiro de yoga y surf en la playa tranquila de Troncones.
+- [Amansala](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/amansala/): Hotel eco chic en Tulum, conocido por sus semanas de retiro de yoga.
+- [Mar de Jade](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/mar-de-jade/): Retiro de bienestar familiar en la playa de Chacala desde los años ochenta.
+- [Casa Om](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/casa-om/): Casa de retiros con shala de yoga cerca del arrecife de Puerto Morelos.
+- [Prana del Mar](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/prana-del-mar/): Centro de retiros de yoga frente al Pacífico, en Los Cabos.
+- [Rancho La Puerta](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/rancho-la-puerta/): Rancho de fitness de una semana en el valle de Tecate desde 1940.
+- [Playa Viva](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/playa-viva/): Resort regenerativo con proyectos de tortugas y arrecife cerca de Juluchuca.
+- [La Casa que Canta](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/la-casa-que-canta/): Hotel boutique en el acantilado de Playa La Ropa, bahía de Zihuatanejo.
+- [Verana](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/verana/): Hotel boutique en la selva sobre el pueblo de Yelapa.
+- [Sanoviv Medical Institute](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/sanoviv/): Instituto de salud residencial con programas supervisados de una semana cerca de Rosarito.
+- [Playa Escondida](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/playa-escondida/): Refugio solo para adultos con bungalows en la selva al sur de Sayulita.
+- [Yäan Wellness Energy Spa](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/yaan-wellness/): Spa de sanación y bienestar en el camino costero de Tulum.
+- [Holistika Tulum](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/holistika/): Comunidad de bienestar en la selva con temazcal y cocina vegetariana en Tulum.
+- [Tepoztlán](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/tepoztlan/): Pueblo Mágico bajo el Tepozteco, la escapada clásica desde la Ciudad de México.
+- [Teotitlán del Valle](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/teotitlan-del-valle/): Pueblo zapoteco de tejedores, famoso por sus tapices de tintes naturales.
+- [San Bartolo Coyotepec](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/san-bartolo-coyotepec/): Casa del barro negro de Oaxaca, trabajado a mano en talleres familiares.
+- [Mata Ortiz](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/mata-ortiz/): Pueblo del norte donde la cerámica modelada a mano sostiene decenas de talleres familiares.
+- [Real de Catorce](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/real-de-catorce/): Pueblo minero de altura al que se llega por túnel, hecho para desconectarse.
+- [Bacalar](https://adventurewave-labs.github.io/quiet-places/directory/es/lugares/bacalar/): Pueblo pequeño en la laguna de los siete colores, lejos de las multitudes.
+
+## Relocation guides, English
+- [Tepoztlán](https://adventurewave-labs.github.io/quiet-places/directory/guides/tepoztlan/): Tepoztlán sits under its cliffs about an hour south of Mexico City, which makes it the easiest quiet town to reach from the capital.
+- [Bacalar](https://adventurewave-labs.github.io/quiet-places/directory/guides/bacalar/): Bacalar is a small lagoon town in southern Quintana Roo, far from the Riviera Maya's pace.
+- [Real de Catorce](https://adventurewave-labs.github.io/quiet-places/directory/guides/real-de-catorce/): Real de Catorce is a high desert former silver town reached through a tunnel, with Matehuala as its service city on the plain below.
+- [Teotitlán del Valle](https://adventurewave-labs.github.io/quiet-places/directory/guides/teotitlan-del-valle/): Teotitlán del Valle is a Zapotec weaving village half an hour from Oaxaca city, which puts full city services within a short colectivo ride while the village keeps its own rhythm of looms, markets, and saints days.
+- [San Bartolo Coyotepec](https://adventurewave-labs.github.io/quiet-places/directory/guides/san-bartolo-coyotepec/): San Bartolo Coyotepec, home of Oaxaca's black pottery, lies about half an hour south of the state capital.
+
+## Guías de mudanza, español
+- [Tepoztlán](https://adventurewave-labs.github.io/quiet-places/directory/es/guias/tepoztlan/): Tepoztlán descansa bajo sus cerros a una hora al sur de la Ciudad de México, lo que lo hace el pueblo tranquilo más fácil de alcanzar desde la capital.
+- [Bacalar](https://adventurewave-labs.github.io/quiet-places/directory/es/guias/bacalar/): Bacalar es un pueblo pequeño de laguna en el sur de Quintana Roo, lejos del ritmo del Riviera Maya.
+- [Real de Catorce](https://adventurewave-labs.github.io/quiet-places/directory/es/guias/real-de-catorce/): Real de Catorce es un antiguo pueblo plateado del altiplano al que se entra por un túnel, con Matehuala como ciudad de servicios en el llano.
+- [Teotitlán del Valle](https://adventurewave-labs.github.io/quiet-places/directory/es/guias/teotitlan-del-valle/): Teotitlán del Valle es un pueblo zapoteco de tejedores a media hora de la ciudad de Oaxaca, que deja los servicios completos de la ciudad a un corto viaje en colectivo mientras el pueblo guarda su propio ritmo de telares, mercados y fiestas.
+- [San Bartolo Coyotepec](https://adventurewave-labs.github.io/quiet-places/directory/es/guias/san-bartolo-coyotepec/): San Bartolo Coyotepec, casa del barro negro de Oaxaca, queda a media hora al sur de la capital del estado.
+
+## Residency match
+- [Residency match](https://adventurewave-labs.github.io/quiet-places/directory/match/): two sided placement, hubs and practitioners, hand matched.
+- [Vinculación de residencias](https://adventurewave-labs.github.io/quiet-places/directory/es/vinculacion/): vinculación artesanal entre hubs y practicantes.
+
+## Method
+- [Methodology](https://adventurewave-labs.github.io/quiet-places/directory/#methodology): verification states, price bands, inclusion rules.

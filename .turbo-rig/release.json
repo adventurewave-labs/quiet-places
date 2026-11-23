@@ -23,7 +23,40 @@
     "pages": {
       "source_path": "/docs",
       "homepage": "https://adventurewave-labs.github.io/quiet-places/"
-    }
+    },
+    "uat": [
+      {
+        "path": "",
+        "contains": "Quiet Places",
+        "link": "directory/"
+      },
+      {
+        "path": "directory/",
+        "contains": "<html lang=\"en\">",
+        "link": "directory/es"
+      },
+      {
+        "path": "directory/es/",
+        "contains": "<html lang=\"es\">",
+        "link": "directory/"
+      },
+      {
+        "path": "directory/places/bacalar/",
+        "contains": "Bacalar"
+      },
+      {
+        "path": "directory/guides/bacalar/",
+        "contains": "Bacalar"
+      },
+      {
+        "path": "directory/match/",
+        "contains": "Residency match"
+      },
+      {
+        "path": "directory/assets/style.css",
+        "contains": "--moss"
+      }
+    ]
   },
   "artifacts": {
     "application": "site",

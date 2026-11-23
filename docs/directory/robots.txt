@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://adventurewave-labs.github.io/quiet-places/directory/sitemap.xml

@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.1.1 (2026-11-23)
+
+### English
+
+- Serve the live directory alongside the GitHub Pages landing.
+- Add the animated README banner, setup instructions, and links to both languages.
+- Add release acceptance checks for the home page, language navigation, place details, guides, and the residency page.
+
+### Español
+
+- Publica el directorio junto a la página de presentación en GitHub Pages.
+- Añade el banner animado, las instrucciones de uso y los enlaces a ambos idiomas.
+- Añade comprobaciones de la portada, la navegación por idioma, las fichas, las guías y las residencias.
+
 ## v0.1.0 (2026-11-23)
 
 ### English
