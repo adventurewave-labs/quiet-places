@@ -56,7 +56,43 @@
         "path": "directory/assets/style.css",
         "contains": "--moss"
       }
-    ]
+    ],
+    "discovery": {
+      "robots": "shared",
+      "sitemap": "sitemap.xml",
+      "llms": "llms.txt",
+      "llms_full": "directory/llms-full.txt",
+      "pages": [
+        {
+          "path": "",
+          "lang": "en",
+          "open_graph": true,
+          "schema_types": [
+            "WebSite"
+          ]
+        },
+        {
+          "path": "es/",
+          "lang": "es",
+          "open_graph": true,
+          "schema_types": [
+            "WebSite"
+          ]
+        },
+        {
+          "path": "directory/",
+          "lang": "en"
+        },
+        {
+          "path": "directory/es/",
+          "lang": "es"
+        },
+        {
+          "path": "directory/places/bacalar/",
+          "lang": "en"
+        }
+      ]
+    }
   },
   "artifacts": {
     "application": "site",

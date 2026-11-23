@@ -51,7 +51,7 @@ Keep entries verifiable, publish corresponding English and Spanish pages, and di
 
 ## Deployment and release
 
-GitHub Pages hosts the release landing and the live directory. Rebuild the Pages copy with `scripts/build_pages.py` from the same source used for `site/`. [The Turbo Rig release policy](.turbo-rig/release.json) records the license, publishing paths, and live acceptance checks.
+GitHub Pages hosts the release landing and the live directory. The Pages build generates `sitemap.xml` and `llms.txt` for the landing and the directory. The crawler policy lives at the shared host’s root. Rebuild the Pages copy with `scripts/build_pages.py` from the same source used for `site/`. [The Turbo Rig release policy](.turbo-rig/release.json) records the license, publishing paths, and live acceptance checks.
 
 [The Vercel workflow](.github/workflows/deploy.yml) supports deployments from `main` and uses Vercel CLI 65.12.1. It needs the GitHub Actions secrets `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID`. The workflow passes the token as an environment variable and reports any missing secret.
 
