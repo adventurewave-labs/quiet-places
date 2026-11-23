@@ -31,6 +31,8 @@
     "infographic_png": "docs/assets/quiet-places-infographic.png",
     "infographic_svg": "docs/assets/quiet-places-infographic.svg",
     "mark_svg": "docs/assets/quiet-places-mark.svg",
-    "release_notes": "CHANGELOG.md"
+    "release_notes": "CHANGELOG.md",
+    "readme": "README.md",
+    "banner_svg": "docs/assets/quiet-places-banner.svg"
   }
 }

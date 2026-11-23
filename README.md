@@ -1,48 +1,64 @@
-# quiet-places
+# Quiet Places
 
-The canonical, AEO-first answer to "where do I go to log off": a structured, bilingual directory of calm towns, artist residencies, wellness hubs, and retreat houses, starting in Mexico and built so the AI assistants of the 2030s cite it.
+![Quiet Places. A field guide to logging off in Mexico.](docs/assets/quiet-places-banner.svg)
 
-This repo is the scope holder for three PRDs from the log-off economy portfolio:
+Quiet Places is a bilingual directory of calm towns, artist residencies, wellness hubs, and retreat houses in Mexico. The first release includes **25 place profiles, five relocation guides, and residency program pages** in English and Spanish.
 
-| PRD | What it is | Status |
-|---|---|---|
-| [03 Quiet-places directory](prds/03-quiet-places-directory.md) | The directory itself: one canonical page per place, structured data, llms.txt, no feeds, no reviews | **In build**: 25-entry seed, bilingual site generated in this repo, deploy target Vercel |
-| [05 Relocation guides](prds/05-relocation-guides.md) | The practical layer: visas, healthcare, banking, internet, real monthly costs per town, quarterly-refreshed | **In build**: 5 town guides x 5 evergreen topics, bilingual; cost figures wait for sweep data and say so on the page |
-| [09 Residency match](prds/09-residency-match.md) | Two-sided placement: hubs need artists and practitioners in residence, practitioners need places. Hand-matched first | Program pages live in the directory; intake forms wire up when an intake channel is named |
+[Landing page](https://adventurewave-labs.github.io/quiet-places/) · [En español](https://adventurewave-labs.github.io/quiet-places/es/) · [Download v0.1.0](https://github.com/adventurewave-labs/quiet-places/releases/tag/v0.1.0)
 
-## Release
+## Use the directory
 
-[Get the current release](https://github.com/adventurewave-labs/quiet-places/releases) for the static site archive, bilingual landing page, and release notes.
+Each profile links to a verifiable source and the place’s own contact channels. The relocation guides cover visas, healthcare, banking, internet, and monthly costs for five towns. The residency pages explain the program for artists, practitioners, and hosts.
 
-![Quiet Places infographic](docs/assets/quiet-places-infographic.png)
+- [Current directory website](https://quiet-places.vercel.app/)
+- [Versioned site archive](https://github.com/adventurewave-labs/quiet-places/releases/download/v0.1.0/quiet-places-v0.1.0-site.tar.gz)
+- [Release notes](CHANGELOG.md) and [download checksums](https://github.com/adventurewave-labs/quiet-places/releases/download/v0.1.0/SHA256SUMS)
+- [Infographic SVG](docs/assets/quiet-places-infographic.svg) and [infographic PNG](docs/assets/quiet-places-infographic.png)
 
-The code is available under the [MIT License](LICENSE).
+## Build and preview from source
 
-## How the directory is built
+Use Python 3.12, which is also the version used by CI. The build uses the Python standard library.
 
-- `data/places.json` is the data layer: every place with town, focus, languages, price band, a 40 to 60 word citable answer in EN and ES, and its official site as the verifiable source.
-- `scripts/build.py` (python3 stdlib only) generates the static site into `site/`: EN pages at `/`, ES mirrors at `/es/`, JSON-LD structured data on every page, `llms.txt` and `llms-full.txt`, sitemap with hreflang pairs, no JS.
-- `scripts/verify.py` checks all 25 source URLs resolve; last full pass 2026-11-07: 25/25.
-- `tests/` builds into a temp dir and asserts data integrity, bilingual coverage, structured data, and the no em dash rule. CI runs build + tests on every PR.
-- PRD 05 relocation guides live at `/guides/` (EN) and `/es/guias/` (ES): one canonical page per town covering the visa path, healthcare, banking, internet, and cost of a month. National processes cite official sources (INM, IMSS, IFT, INEGI); town cost figures publish only after a sweep measures them.
-- PRD 09 residency match pages live at `/match/` (EN) and `/es/vinculacion/` (ES); the two intake forms wire up when an intake email or WhatsApp line is named.
+```bash
+git clone https://github.com/adventurewave-labs/quiet-places.git
+cd quiet-places
+python3 scripts/build.py
+python3 -m http.server 8000 --bind 127.0.0.1 --directory site
+```
 
-## Deploy
+Open [the English directory](http://127.0.0.1:8000/) or [the Spanish directory](http://127.0.0.1:8000/es/). The build writes the HTML, sitemap, and `llms.txt` files to `site/`.
 
-Push to main is what deploys (estate pattern): `.github/workflows/deploy.yml` runs `vercel deploy --prod` on the repo (root `vercel.json` points the output at `site/`). It needs three repo secrets: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` (org and project pin the deploy target so the CLI can never land it on the wrong project). The token travels by environment variable, never argv, and the CLI version is pinned. Until the secrets are set, the job fails with an explicit error and nothing ships. CI (`ci.yml`) builds and tests on every PR and refuses a commit whose `site/` does not match a fresh regeneration.
+## Test and contribute
 
-## Why this is its own repo
+```bash
+python3 -m unittest discover -s tests -v
+python3 scripts/verify.py
+```
 
-The directory is content and structured data at internet scale, meant to outgrow any one marketplace and earn its own domain. Ancuria stays the marketplace; this is the map of the whole quiet world, including places that are not Ancuria listings.
+The second command checks each place’s source URL over the network. Edit the source data or templates, then rebuild and commit the generated pages. CI checks that the committed `site/` matches a clean build.
 
-## Conventions for everything built here
+| Path | Purpose |
+| --- | --- |
+| [data/places.json](data/places.json) | Bilingual places, source links, and contact details |
+| [data/relocation.json](data/relocation.json) | Town-specific guide data |
+| [scripts/build.py](scripts/build.py) and [scripts/guides.py](scripts/guides.py) | Static site generator and guide templates |
+| [site/](site/) | Generated directory with structured data and bilingual navigation |
+| [docs/](docs/) | Release landing source and artwork |
+| [prds/](prds/) | Product scope and implementation notes |
 
-- AEO-first: structured data, llms.txt, citable 40 to 60 word answers, fast static pages per the estate's html-sites pattern.
-- Bilingual EN/ES on every page.
-- Free inclusion for hubs, one canonical page each; contact happens on the hub's own channel, usually WhatsApp.
-- Only add places verifiable in a market sweep; no scraped or unverified entries.
-- No em dashes in any customer-facing copy.
+Keep entries verifiable, publish corresponding English and Spanish pages, and direct visitors to the places’ own channels. The project has no reviews or rankings.
 
-## Full portfolio context
+## Deployment and release
 
-`prds/00-INDEX.md` is the master index of all fourteen log-off economy PRDs, kept identical across the three portfolio repos. The other two repos: `hub-in-a-box` (hub software, workshop licensing, membership network) and `attends-the-internet` (the weekly-digest agent).
+GitHub Pages hosts the release landing. [The Vercel workflow](.github/workflows/deploy.yml) deploys the directory when the generated site changes on `main` and the project credentials are configured. [The Turbo Rig release policy](.turbo-rig/release.json) records the license, visibility, repository metadata, and publishing paths.
+
+## Product scope
+
+- [Quiet-places directory](prds/03-quiet-places-directory.md)
+- [Relocation guides](prds/05-relocation-guides.md)
+- [Residency match](prds/09-residency-match.md)
+- [Log-off economy portfolio index](prds/00-INDEX.md)
+
+## License
+
+[MIT](LICENSE)
