@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "repository": "adventurewave-labs/quiet-places",
+  "license": "MIT",
+  "github": {
+    "visibility": "public",
+    "description": "Bilingual directory of calm towns, artist residencies, wellness hubs, and retreat houses in Mexico.",
+    "topics": [
+      "aeo",
+      "artist-residencies",
+      "bilingual",
+      "directory",
+      "html",
+      "llms-txt",
+      "logoff-economy",
+      "mexico",
+      "retreats",
+      "seo",
+      "static-site",
+      "travel",
+      "wellness"
+    ],
+    "pages": {
+      "source_path": "/docs",
+      "homepage": "https://adventurewave-labs.github.io/quiet-places/"
+    }
+  },
+  "artifacts": {
+    "application": "site",
+    "landing": "docs",
+    "infographic_png": "docs/assets/quiet-places-infographic.png",
+    "infographic_svg": "docs/assets/quiet-places-infographic.svg",
+    "mark_svg": "docs/assets/quiet-places-mark.svg",
+    "release_notes": "CHANGELOG.md"
+  }
+}

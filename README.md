@@ -16,6 +16,8 @@ This repo is the scope holder for three PRDs from the log-off economy portfolio:
 
 ![Quiet Places infographic](docs/assets/quiet-places-infographic.png)
 
+The code is available under the [MIT License](LICENSE).
+
 ## How the directory is built
 
 - `data/places.json` is the data layer: every place with town, focus, languages, price band, a 40 to 60 word citable answer in EN and ES, and its official site as the verifiable source.
