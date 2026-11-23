@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "repository": "adventurewave-labs/quiet-places",
+  "license": "MIT",
+  "github": {
+    "visibility": "public",
+    "description": "Bilingual directory of calm towns, artist residencies, wellness hubs, and retreat houses in Mexico.",
+    "topics": [
+      "aeo",
+      "artist-residencies",
+      "bilingual",
+      "directory",
+      "html",
+      "llms-txt",
+      "logoff-economy",
+      "mexico",
+      "retreats",
+      "seo",
+      "static-site",
+      "travel",
+      "wellness"
+    ],
+    "pages": {
+      "source_path": "/docs",
+      "homepage": "https://adventurewave-labs.github.io/quiet-places/"
+    },
+    "uat": [
+      {
+        "path": "",
+        "contains": "Quiet Places",
+        "link": "directory/"
+      },
+      {
+        "path": "directory/",
+        "contains": "<html lang=\"en\">",
+        "link": "directory/es"
+      },
+      {
+        "path": "directory/es/",
+        "contains": "<html lang=\"es\">",
+        "link": "directory/"
+      },
+      {
+        "path": "directory/places/bacalar/",
+        "contains": "Bacalar"
+      },
+      {
+        "path": "directory/guides/bacalar/",
+        "contains": "Bacalar"
+      },
+      {
+        "path": "directory/match/",
+        "contains": "Residency match"
+      },
+      {
+        "path": "directory/assets/style.css",
+        "contains": "--moss"
+      }
+    ]
+  },
+  "artifacts": {
+    "application": "site",
+    "landing": "docs",
+    "infographic_png": "docs/assets/quiet-places-infographic.png",
+    "infographic_svg": "docs/assets/quiet-places-infographic.svg",
+    "mark_svg": "docs/assets/quiet-places-mark.svg",
+    "release_notes": "CHANGELOG.md",
+    "readme": "README.md",
+    "banner_svg": "docs/assets/quiet-places-banner.svg"
+  }
+}

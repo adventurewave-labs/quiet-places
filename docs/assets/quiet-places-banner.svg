@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="1200" height="360" role="img" aria-labelledby="title description">
+  <title id="title">Quiet Places</title>
+  <desc id="description">A field guide to logging off in Mexico. An illustrated sun and contour lines move gently above a layered hillside.</desc>
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1">
+      <stop offset="0" stop-color="#293e31"/>
+      <stop offset="1" stop-color="#425940"/>
+    </linearGradient>
+    <clipPath id="frame"><rect width="1200" height="360" rx="24"/></clipPath>
+  </defs>
+  <style>
+    @keyframes breathe {
+      0%, 100% { opacity: .42; transform: scale(1); }
+      50% { opacity: .8; transform: scale(1.1); }
+    }
+    @keyframes trace {
+      0%, 100% { stroke-dashoffset: 0; opacity: .42; }
+      50% { stroke-dashoffset: -18; opacity: .78; }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .halo { transform-origin: 954px 128px; animation: breathe 8s ease-in-out infinite; }
+      .contour { animation: trace 12s ease-in-out infinite; }
+    }
+  </style>
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="360" fill="url(#sky)"/>
+    <circle class="halo" cx="954" cy="128" r="80" fill="none" stroke="#e2c58a" opacity=".42"/>
+    <circle cx="954" cy="128" r="57" fill="#e2c58a"/>
+    <path d="M516 360c102-9 171-111 267-128 86-16 126 28 212 23 96-5 156-63 235-62v180H516Z" fill="#61775b"/>
+    <path d="M602 373c92-24 151-98 263-107 131-10 211 29 365-44v151Z" fill="#849779"/>
+    <path d="M720 373c85-44 156-76 243-64 94 13 162-11 267-46v110Z" fill="#b6b99a"/>
+    <path d="M849 373c61-28 127-34 202-22 68 11 125-9 179-26v48Z" fill="#e8e0d0"/>
+    <g class="contour" fill="none" stroke="#faf7f0" stroke-width="2" stroke-dasharray="6 10" opacity=".42">
+      <path d="M639 355c80-36 146-77 225-80 117-5 207 25 340-42"/>
+      <path d="M767 355c72-34 137-43 202-34 88 13 163-12 235-37"/>
+    </g>
+    <text x="76" y="106" fill="#e2c58a" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="3">MÉXICO</text>
+    <text x="69" y="214" fill="#faf7f0" font-family="Georgia, Times New Roman, serif" font-size="98" letter-spacing="-4">Quiet Places</text>
+    <text x="78" y="271" fill="#f0eadc" font-family="Helvetica, Arial, sans-serif" font-size="28">A field guide to logging off</text>
+  </g>
+</svg>

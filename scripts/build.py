@@ -9,6 +9,7 @@ output, then rebuild: python3 scripts/build.py
 import json
 import re
 import shutil
+import argparse
 import sys
 from html import escape
 from pathlib import Path
@@ -17,7 +18,8 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA_FILE = ROOT / "data" / "places.json"
 DEFAULT_OUT = ROOT / "site"
 
-BASE_URL = "https://quiet-places.vercel.app"  # update when the directory lands on its own domain
+BASE_URL = "https://quiet-places.vercel.app"
+PAGE_SUFFIX = ""
 ESTATE_CONTACT = "https://www.adventureonthewave.com/#services"
 SITE_NAME = "Quiet Places"
 SITE_NAME_ES = "Quiet Places"
@@ -139,18 +141,18 @@ def page_url(slug, lang, kind="place"):
     """Clean URLs (no .html): vercel.json sets cleanUrls true, so /places/slug
     serves places/slug.html and /index.html redirects to /."""
     if kind == "place":
-        return f"{BASE_URL}/places/{slug}" if lang == "en" else f"{BASE_URL}/es/lugares/{slug}"
+        return f"{BASE_URL}/places/{slug}{PAGE_SUFFIX}" if lang == "en" else f"{BASE_URL}/es/lugares/{slug}{PAGE_SUFFIX}"
     if kind == "home":
-        return BASE_URL if lang == "en" else f"{BASE_URL}/es"
+        return f"{BASE_URL}{PAGE_SUFFIX}" if lang == "en" else f"{BASE_URL}/es{PAGE_SUFFIX}"
     if kind == "match":
-        return f"{BASE_URL}/match" if lang == "en" else f"{BASE_URL}/es/vinculacion"
+        return f"{BASE_URL}/match{PAGE_SUFFIX}" if lang == "en" else f"{BASE_URL}/es/vinculacion{PAGE_SUFFIX}"
     raise ValueError(kind)
 
 
 def guide_url(slug, lang):
     if slug is None:
-        return f"{BASE_URL}/guides" if lang == "en" else f"{BASE_URL}/es/guias"
-    return f"{BASE_URL}/guides/{slug}" if lang == "en" else f"{BASE_URL}/es/guias/{slug}"
+        return f"{BASE_URL}/guides{PAGE_SUFFIX}" if lang == "en" else f"{BASE_URL}/es/guias{PAGE_SUFFIX}"
+    return f"{BASE_URL}/guides/{slug}{PAGE_SUFFIX}" if lang == "en" else f"{BASE_URL}/es/guias/{slug}{PAGE_SUFFIX}"
 
 
 def guide_path(slug, lang):
@@ -713,9 +715,18 @@ def build_into(outdir: Path):
 
 
 def main():
-    places = build_into(DEFAULT_OUT)
-    print(f"built {len(places)} place pages x2 languages into {DEFAULT_OUT}")
+    global BASE_URL, PAGE_SUFFIX
+    parser = argparse.ArgumentParser(description="Build the Quiet Places static directory")
+    parser.add_argument("--out", type=Path, default=DEFAULT_OUT)
+    parser.add_argument("--base-url", default=BASE_URL)
+    parser.add_argument("--directory-urls", action="store_true")
+    args = parser.parse_args()
+    BASE_URL = args.base_url.rstrip("/")
+    PAGE_SUFFIX = "/" if args.directory_urls else ""
+    places = build_into(args.out)
+    print(f"built {len(places)} place pages x2 languages into {args.out}")
 
 
 if __name__ == "__main__":
+    sys.modules.setdefault("build", sys.modules[__name__])
     main()
