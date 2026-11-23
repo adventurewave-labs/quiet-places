@@ -4,6 +4,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from xml.etree import ElementTree
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -29,6 +30,17 @@ class PagesBuildTests(unittest.TestCase):
             self.assertTrue((out / "directory/match/index.html").is_file())
             self.assertFalse((out / "directory/.quiet-places-build").exists())
             self.assertTrue((out / "index.html").is_file())
+            namespace = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
+            root = ElementTree.parse(out / "sitemap.xml")
+            urls = [node.text for node in root.iter(namespace + "loc")]
+            base = "https://adventurewave-labs.github.io/quiet-places/"
+            self.assertIn(base, urls)
+            self.assertIn(base + "es/", urls)
+            self.assertIn(base + "directory/places/bacalar/", urls)
+            self.assertEqual(len(urls), len(set(urls)))
+            self.assertIn(base + "directory/llms.txt", (out / "llms.txt").read_text(encoding="utf-8"))
+            for name in ("sitemap.xml", "llms.txt"):
+                self.assertEqual((out / name).read_bytes(), (ROOT / "docs" / name).read_bytes())
             live = ROOT / "docs/directory"
             generated = out / "directory"
             expected = {path.relative_to(generated): path.read_bytes()

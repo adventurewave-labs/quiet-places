@@ -1,0 +1,16 @@
+# Quiet Places
+
+> Bilingual directory of calm towns, artist residencies, wellness hubs, and retreats in Mexico.
+
+Place profiles link to public sources and each place's own contact channels.
+
+## Pages and reference files
+
+- [About Quiet Places](https://adventurewave-labs.github.io/quiet-places/)
+- [Presentación en español](https://adventurewave-labs.github.io/quiet-places/es/)
+- [English directory](https://adventurewave-labs.github.io/quiet-places/directory/)
+- [Directorio en español](https://adventurewave-labs.github.io/quiet-places/directory/es/)
+- [Relocation guides](https://adventurewave-labs.github.io/quiet-places/directory/guides/)
+- [Residency program](https://adventurewave-labs.github.io/quiet-places/directory/match/)
+- [Directory sources and context](https://adventurewave-labs.github.io/quiet-places/directory/llms.txt)
+- [Full directory context](https://adventurewave-labs.github.io/quiet-places/directory/llms-full.txt)
